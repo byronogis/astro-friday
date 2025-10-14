@@ -46,6 +46,8 @@ export interface ArtConfig {
 export interface ProjectItem extends Pick<NavItem, 'label' | 'link' | 'icon'> {
   /**
    * A brief description of the project.
+   *
+   * Also accept HTML to render rich text.
    */
   desc?: string
   /**
