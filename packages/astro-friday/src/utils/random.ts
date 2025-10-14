@@ -18,10 +18,6 @@ export function selectByWeight<T extends string>(weights: Record<T, number>): T 
   // Get total weight
   const totalShares = validWeights.reduce((sum, [, weight]) => sum + weight, 0)
 
-  if (totalShares <= 0) {
-    return null
-  }
-
   // Generate a random number between 0 and totalShares
   const randomNumber = Math.random() * totalShares
 
