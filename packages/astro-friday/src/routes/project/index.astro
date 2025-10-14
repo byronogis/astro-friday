@@ -1,6 +1,7 @@
 ---
 import type { ProjectItem as ProjectItemType } from '../../types/index'
 import config from 'virtual:astro-friday-config'
+import ArticleTOC from '../../components/ArticleTOC.astro'
 import ProjectItem from '../../components/ProjectItem.astro'
 import DefaultLayout from '../../layouts/Default.astro'
 
@@ -14,10 +15,18 @@ const categorizedProjects = projects?.reduce((acc, project) => {
   acc[category].push(project)
   return acc
 }, {} as Record<string, ProjectItemType[]>)
+
+const headings = Object.entries(categorizedProjects).map(([category, _projects]) => ({
+  depth: 2,
+  text: category,
+  slug: category.toLowerCase().replace(/\s+/g, '-'),
+}))
 ---
 
 <DefaultLayout>
   <div class="mx-auto max-w-300">
+  <ArticleTOC {headings} />
+
   {
     Object.entries(categorizedProjects || {}).map(([category, projects], _cidx) => (
       <div
