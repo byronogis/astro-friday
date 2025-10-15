@@ -67,15 +67,22 @@ import ThemeToggle from './ThemeToggle.astro'
 <style>
   @keyframes fade-in-out {
     from {
-      opacity: 0 ;
-      cursor: default;
+
+    }
+    10% {
+      opacity: 0;
+      cursor: pointer;
     }
     to {
       opacity: 1;
+      cursor: pointer;
     }
   }
 
   .scroll-to-top {
+    opacity: 0;
+    cursor: default;
+
       animation: fade-in-out linear forwards;
       animation-timeline: scroll();
       animation-range: 0vh 30vh;
