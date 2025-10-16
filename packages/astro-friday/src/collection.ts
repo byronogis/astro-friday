@@ -15,6 +15,21 @@ export function getSchema(config: ResolvedConfig) {
     keywords: z.union([z.string(), z.array(z.string())]).optional().default([]).transform(val => Array.isArray(val) ? val : [val]),
     draft: z.boolean().default(false),
     lang: z.string().optional().default('en'),
+    /**
+     * Table of contents (TOC) generation for posts
+     */
+    toc: z.object({
+      /**
+       * Enable or disable the table of contents (TOC) generation for posts.
+       */
+      enable: z.boolean().optional(),
+      /**
+       * The heading levels to include in the TOC.
+       *
+       * @example [2, 4] will include headings from h2 to h4.
+       */
+      range: z.tuple([z.number().min(1).max(6), z.number().min(1).max(6)]).optional(),
+    }).optional(),
   })
 }
 

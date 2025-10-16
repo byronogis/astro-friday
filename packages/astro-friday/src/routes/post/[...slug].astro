@@ -30,6 +30,11 @@ const {
   headings,
   // @ts-expect-error never
 } = await render(entry)
+
+const toc = {
+  ...config.post.toc,
+  ...entry.data.toc,
+}
 ---
 
 <DefaultLayout
@@ -71,7 +76,7 @@ const {
   }}
 >
   <ArticleDetail {entry}>
-    { config.post.toc.enable && headings.length ? (<ArticleTOC {headings} />) : null }
+    { toc.enable && headings.length ? (<ArticleTOC {headings} {toc} />) : null }
 
     <Content />
   </ArticleDetail>

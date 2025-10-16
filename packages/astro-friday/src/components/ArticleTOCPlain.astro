@@ -1,9 +1,10 @@
 ---
 import type { MarkdownHeading } from 'astro'
-import config from 'virtual:astro-friday-config'
+import type { Schema } from '../collection'
 
 interface Props {
   headings: MarkdownHeading[]
+  toc: Required<Omit<NonNullable<Schema['toc']>, 'enable'>>
   isResolved?: boolean
   class?: string
 }
@@ -14,11 +15,12 @@ interface MarkdownHeadingNested extends MarkdownHeading {
 
 const {
   headings,
+  toc,
   isResolved,
   class: className,
 } = Astro.props
 
-const includeHeadings = headings.filter(i => i.depth >= config.post.toc.range[0] && i.depth <= config.post.toc.range[1])
+const includeHeadings = headings.filter(i => i.depth >= toc.range[0] && i.depth <= toc.range[1])
 
 const resolvedHeadings = isResolved
   ? (includeHeadings as MarkdownHeadingNested[])
@@ -69,6 +71,7 @@ function resolveHeadings(headings_: MarkdownHeading[]): MarkdownHeadingNested[] 
       {heading.children && heading.children.length > 0 && (
         <Astro.self
           headings={heading.children}
+          {toc}
           isResolved={true}
         />
       )}

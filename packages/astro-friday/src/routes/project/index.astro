@@ -25,7 +25,7 @@ const headings = Object.entries(categorizedProjects).map(([category, _projects])
 
 <DefaultLayout>
   <div class="mx-auto max-w-300">
-  <ArticleTOC {headings} />
+  <ArticleTOC {headings} toc={config.post.toc} />
 
   {
     Object.entries(categorizedProjects || {}).map(([category, projects], _cidx) => (

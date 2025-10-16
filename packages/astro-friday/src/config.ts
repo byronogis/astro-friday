@@ -3,6 +3,7 @@ import type nprogress from 'astro-nprogress'
 import type { Props as SEO } from 'astro-seo'
 import type { glob } from 'astro/loaders'
 import type { SetRequiredDeep } from 'type-fest'
+import type { Schema } from './collection'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
 import path from 'node:path'
 import { defu } from 'defu'
@@ -190,24 +191,14 @@ export interface Config {
      */
     pathStyle?: 'collection/id' | 'id'
     /**
-     * Table of contents (TOC) generation for posts
+     * Table of contents (TOC) generation for all content
+     *
+     * NOTE: this is just a default config for all content, can be overridden in
+     * specific content frontmatter
+     *
+     * @default { enable: true, range: [2, 4] }
      */
-    toc?: {
-      /**
-       * Enable or disable the table of contents (TOC) generation for posts.
-       *
-       * @default true
-       */
-      enable?: boolean
-      /**
-       * The heading levels to include in the TOC.
-       *
-       * @example [2, 4] will include headings from h2 to h4.
-       *
-       * @default [2, 4]
-       */
-      range?: [number, number]
-    }
+    toc?: Partial<Schema['toc']>
   }
   /**
    * Define content collections
