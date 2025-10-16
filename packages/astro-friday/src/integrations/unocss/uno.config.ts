@@ -10,6 +10,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { presetScrollbar } from 'unocss-preset-scrollbar'
 
 export default defineConfig({
   shortcuts: {
@@ -45,6 +46,9 @@ export default defineConfig({
           'word-break': 'break-all',
         },
       },
+    }),
+    presetScrollbar({
+      noCompatible: false,
     }),
   ],
   transformers: [

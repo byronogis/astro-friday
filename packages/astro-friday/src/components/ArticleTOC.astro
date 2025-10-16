@@ -25,17 +25,16 @@ const {
     'displaying-table-of-contents',
     'text-sm my-2',
     '[&_li,&_ul]:(mt-2.5px! mb-2.5px!) [&_ul_ul]:(ps-2)',
-    '[&_a]:(no-underline op-60 transition-(opacity 200 ease) line-clamp-1)',
-    '[&_a:hover]:(op-100)',
-    'lg:(w-200px fixed z-1 left-8 top-25 bottom-0 of-y-auto overscroll-contain)',
+    '[&_a]:(no-underline op-40 transition-(opacity,transform 200 ease) line-clamp-1)',
+    '[&_a:hover]:(op-100 scale-102)',
+    'lg:(w-200px fixed z-1 left-8 top-25 bottom-0)',
     'xl:w-260px',
   ]}
-  style="scrollbar-width: none;"
 >
   <summary class:list={[
-    'mb-2 top-0 static list-none',
-    'lg:(op-30 sticky [:root:has(.displaying-table-of-contents:hover)_&]:(op-100) transition duration-700)',
-  ]}
+      'mb-2 list-none',
+      'lg:(op-30 [:root:has(.displaying-table-of-contents:hover)_&]:(op-100) transition duration-700)',
+    ]}
   >
     <i class="i-lucide:list-tree hoverable-text size-6"></i>
   </summary>
@@ -44,6 +43,7 @@ const {
     {headings}
     class:list={[
       'lg:(op-0 [:root:has(.displaying-table-of-contents:hover)_&]:(op-100) transition duration-700)',
+      'lg:(of-y-auto overscroll-contain max-h-70vh scrollbar-none)',
     ]}
   />
 </details>

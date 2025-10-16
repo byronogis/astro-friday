@@ -44,7 +44,8 @@
     "dayjs": "catalog:deps",
     "pixi.js": "catalog:frontend",
     "simplex-noise": "catalog:frontend",
-    "unocss": "catalog:deps"
+    "unocss": "catalog:deps",
+    "unocss-preset-scrollbar": "catalog:deps"
   },
   "dependencies": {
     "astro-color-scheme": "git+https://github.com/byronogis/astro-color-scheme.git#feat-support-astro-view-transition",
