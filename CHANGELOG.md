@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v1.0.0-beta.12
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.11...v1.0.0-beta.12)
+
+### 🚀 Enhancements
+
+- Add toc to project page ([686b1ba](https://github.com/byronogis/astro-friday/commit/686b1ba))
+- Optimize toc scroll behavior ([88ae100](https://github.com/byronogis/astro-friday/commit/88ae100))
+- Toc config for specific content from frontmatter ([2e374ad](https://github.com/byronogis/astro-friday/commit/2e374ad))
+
+### 🩹 Fixes
+
+- Import ([83415a7](https://github.com/byronogis/astro-friday/commit/83415a7))
+- Hide scrolltptop while an unscroll page ([41f113a](https://github.com/byronogis/astro-friday/commit/41f113a))
+
+### 🏡 Chore
+
+- Update deps ([15d11f7](https://github.com/byronogis/astro-friday/commit/15d11f7))
+- Remove noneed code ([17d1320](https://github.com/byronogis/astro-friday/commit/17d1320))
+- Hoist toc index ([5a5ce6b](https://github.com/byronogis/astro-friday/commit/5a5ce6b))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.11
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.10...v1.0.0-beta.11)
