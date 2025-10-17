@@ -196,7 +196,8 @@ export interface Config {
      * NOTE: this is just a default config for all content, can be overridden in
      * specific content frontmatter
      *
-     * @default { enable: true, range: [2, 4] }
+     * @default
+     * { enable: true, range: [2, 4] }
      */
     toc?: Partial<Schema['toc']>
   }
@@ -218,7 +219,7 @@ export interface Config {
   /**
    * Navigation items, used in the navbar.
    *
-   * You can override the built-in navs: `post`, `tag`, `series`, `theme-toggle`
+   * You can override the built-in navs: `post`, `tag`, `series`, `theme-toggle`, `project`,
    * also can define your own navigation items.
    *
    * @example
@@ -231,7 +232,7 @@ export interface Config {
    * }
    * ```
    */
-  navigations?: Partial<Record<'post' | 'tag' | 'series' | 'theme-toggle', Partial<NavItem>>> | {
+  navigations?: Partial<Record<'post' | 'tag' | 'series' | 'theme-toggle' | 'project', Partial<NavItem>>> | {
     [key: string]: NavItem
   }
   /**
@@ -325,9 +326,9 @@ export interface Config {
     nprogress?: Parameters<typeof nprogress>[0] | false
   }
   /**
-   * Project showcase items, used in the `/projects` page.
+   * Project showcase items, used in the `/project` page.
    *
-   * A page route for `/projects` will be automatically created if there are more than 0 projects defined.
+   * A page route for `/project` will be automatically created if there are more than 0 projects defined.
    *
    * @default []
    */
