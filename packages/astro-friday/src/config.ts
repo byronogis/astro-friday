@@ -1,20 +1,20 @@
+import type { SitemapOptions } from '@astrojs/sitemap'
 import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
 import type { Props as SEO } from 'astro-seo'
 import type { glob } from 'astro/loaders'
 import type { SetRequiredDeep } from 'type-fest'
 import type { Schema } from './collection'
+import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
 import path from 'node:path'
 import { defu } from 'defu'
 
 type GlobOptions = Parameters<typeof glob>[0]
 
-export function getDefaultConfig(config: Config & {
-  baseFull?: string
-} = {}): Config {
-  const base = config.base ?? '/'
-  const baseFull = config.baseFull ?? base
+export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): Config {
+  const base = userConfig.base ?? '/'
+  const baseFull = path.join('/', astroConfig.base, base)
 
   return {
     title: 'Friday',
@@ -42,7 +42,7 @@ export function getDefaultConfig(config: Config & {
       'post': { label: 'Post', link: path.join(baseFull, 'post'), icon: 'i-lucide:scroll-text', order: 100 },
       'tag': { label: 'Tag', link: path.join(baseFull, 'tag'), icon: 'i-lucide:tag', order: 200 },
       'series': { label: 'Series', link: path.join(baseFull, 'series'), icon: 'i-lucide:square-library', order: 300 },
-      'project': { label: 'Project', link: path.join(baseFull, 'project'), icon: 'i-lucide:lightbulb', order: 400, hidden: !config.projects?.length },
+      'project': { label: 'Project', link: path.join(baseFull, 'project'), icon: 'i-lucide:lightbulb', order: 400, hidden: !userConfig.projects?.length },
       'theme-toggle': { label: 'Theme', link: 'javascript:;', order: 1000 },
     },
     pages: {
@@ -72,6 +72,30 @@ export function getDefaultConfig(config: Config & {
       nprogress: {
         showSpinner: false,
       },
+      sitemap: {},
+      robotsTxt: [
+        {
+          type: 'local' as const,
+          content: `User-agent: *\nAllow: /`,
+        },
+
+        {
+          type: 'remote' as const,
+          content: 'https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/main/robots.txt',
+        },
+
+        // add sitemap entry if site is defined and sitemap integration is not disabled
+        astroConfig.site && userConfig.integrations?.sitemap !== false
+          ? [{
+              type: 'local' as const,
+              content: `Sitemap: ${path.join(
+                astroConfig.site,
+                astroConfig.base,
+                `${userConfig.integrations?.sitemap?.filenameBase ?? 'sitemap'}-index.xml`,
+              )}`,
+            }]
+          : [],
+      ].flat(),
     },
     projects: [],
   }
@@ -81,11 +105,7 @@ export function resolveConfig(userConfig: Config, astroConfig: AstroConfig, isDe
   const base = userConfig.base ?? '/'
   const baseFull = path.join('/', astroConfig.base, base)
 
-  const defaultConfig = getDefaultConfig({
-    ...userConfig,
-    base,
-    baseFull,
-  })
+  const defaultConfig = getDefaultConfig(userConfig, astroConfig)
 
   // use default config for development to avoid issues with Vercel OG package
   isDev && delete userConfig.imports?.['@vercel/og']
@@ -324,6 +344,21 @@ export interface Config {
      * @see https://github.com/byronogis/astro-nprogress
      */
     nprogress?: Parameters<typeof nprogress>[0] | false
+    /**
+     * Sitemap generation using `@astrojs/sitemap` integration.
+     *
+     * @see https://docs.astro.build/en/guides/integrations-guide/sitemap/
+     */
+    sitemap?: SitemapOptions | false
+    /**
+     * Custom robots.txt entries, will be appended to the generated robots.txt file.
+     *
+     * @default
+     * - User-agent: * Allow: /
+     * - Remote: https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/main/robots.txt
+     * - Sitemap: <your-site-url>/sitemap-index.xml
+     */
+    robotsTxt?: RobotsTxtOptions | false
   }
   /**
    * Project showcase items, used in the `/project` page.
@@ -368,6 +403,8 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'viewTransition.enable'
   | 'integrations'
   | 'integrations.nprogress'
+  | 'integrations.sitemap'
+  | 'integrations.robotsTxt'
   | 'projects'
 > & {
   /**

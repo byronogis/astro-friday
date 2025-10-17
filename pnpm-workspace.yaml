@@ -38,6 +38,7 @@ catalogs:
     bumpp: ^10.3.1
     changelogen: ^0.6.2
   seo:
+    '@astrojs/sitemap': ^3.6.0
     '@vercel/og': ^0.8.5
     astro-seo: ^0.8.4
   types:

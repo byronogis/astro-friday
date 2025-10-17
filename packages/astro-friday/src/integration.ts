@@ -7,6 +7,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { resolveConfig } from './config'
 import { nprogress } from './integrations/nprogress'
+import { robotsTxt } from './integrations/robotsTxt'
+import { sitemap } from './integrations/sitemap'
 import { unocss } from './integrations/unocss'
 import { vitePluginAstroFridayCollection } from './plugins/collection'
 import { vitePluginAstroFridayComponents } from './plugins/components'
@@ -41,6 +43,8 @@ export function integration(userConfig: Config = {}): AstroIntegration {
           integrations: [
             ...unocss(config),
             ...nprogress(config, resolvedConfig),
+            ...sitemap(config, resolvedConfig),
+            ...robotsTxt(config, resolvedConfig),
           ],
           vite: {
             plugins: [
