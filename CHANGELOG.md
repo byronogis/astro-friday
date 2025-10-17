@@ -1,6 +1,35 @@
 # Changelog
 
 
+## v1.0.0-beta.13
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.12...v1.0.0-beta.13)
+
+### 🚀 Enhancements
+
+- Auto generate sitemap and robots ([b1f7e69](https://github.com/byronogis/astro-friday/commit/b1f7e69))
+
+### 💅 Refactors
+
+- ⚠️  Move `seo` config field to `integrations.seo` ([bb53174](https://github.com/byronogis/astro-friday/commit/bb53174))
+
+### 📖 Documentation
+
+- Fix project page path ([2800f52](https://github.com/byronogis/astro-friday/commit/2800f52))
+
+### 🏡 Chore
+
+- Update deps ([a39bbc0](https://github.com/byronogis/astro-friday/commit/a39bbc0))
+- Update lockfile ([79f39b8](https://github.com/byronogis/astro-friday/commit/79f39b8))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Move `seo` config field to `integrations.seo` ([bb53174](https://github.com/byronogis/astro-friday/commit/bb53174))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.12
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.11...v1.0.0-beta.12)
