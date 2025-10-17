@@ -4,7 +4,7 @@ packages:
 
 catalogs:
   build:
-    astro: ^5.14.4
+    astro: ^5.14.5
   deps:
     astro-color-scheme: ^1.1.5
     astro-integration-kit: ^0.19.0
@@ -14,7 +14,7 @@ catalogs:
     jiti: ^2.6.1
     type-fest: ^5.1.0
     typescript: ^5.9.3
-    unocss: ^66.5.3
+    unocss: ^66.5.4
     unocss-preset-scrollbar: ^3.2.0
     zx: ^8.8.4
   frontend:
@@ -26,8 +26,8 @@ catalogs:
     '@iconify-json/lucide': ^1.2.69
     '@iconify-json/uil': ^1.2.3
   lint:
-    '@antfu/eslint-config': ^5.4.1
-    '@unocss/eslint-plugin': ^66.5.3
+    '@antfu/eslint-config': ^6.0.0
+    '@unocss/eslint-plugin': ^66.5.4
     eslint: ^9.37.0
     eslint-plugin-astro: ^1.3.1
     husky: ^9.1.7
