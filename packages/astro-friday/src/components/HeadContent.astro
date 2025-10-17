@@ -13,7 +13,7 @@ const { seo } = Astro.props
 
 const mergedSEO = defu<SEOProps, SEOProps[]>(
   seo || {},
-  config.seo || {},
+  config.integrations.seo || {},
   {
     title: config.title,
     description: config.description,

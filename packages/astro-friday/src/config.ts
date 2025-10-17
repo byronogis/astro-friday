@@ -243,19 +243,6 @@ export interface Config {
    */
   pages?: Partial<Record<'home' | '404', InjectedRoute | false>>
   /**
-   * SEO configuration for `astro-seo` integration
-   *
-   * @see https://github.com/jonasmerlin/astro-seo?tab=readme-ov-file#supported-props
-   *
-   * Priority: default build-in < config < specific page build-in
-   *
-   * default build-in:
-   * @see https://github.com/byronogis/astro-friday/blob/30e444d5b11dffb70bc5a2036eb83c80ef6bd200/packages/astro-friday/src/components/HeadContent.astro#L17-L29
-   * specific page build-in:
-   * @see https://github.com/byronogis/astro-friday/blob/30e444d5b11dffb70bc5a2036eb83c80ef6bd200/packages/astro-friday/src/routes/post/%5B...slug%5D.astro#L35-L65
-   */
-  seo?: SEO
-  /**
    * Logo configuration, used in the browser tab and top left corner of the navbar.
    *
    * NOTE: if you set a custom display in navbar, you might also want to override the `NavbarBrand` component in `components` config
@@ -317,6 +304,19 @@ export interface Config {
    * Integrations configuration, you can configure or disable built-in integrations here.
    */
   integrations?: {
+    /**
+     * SEO configuration for `astro-seo` integration
+     *
+     * @see https://github.com/jonasmerlin/astro-seo?tab=readme-ov-file#supported-props
+     *
+     * Priority: default build-in < config < specific page build-in
+     *
+     * default build-in:
+     * @see https://github.com/byronogis/astro-friday/blob/30e444d5b11dffb70bc5a2036eb83c80ef6bd200/packages/astro-friday/src/components/HeadContent.astro#L17-L29
+     * specific page build-in:
+     * @see https://github.com/byronogis/astro-friday/blob/30e444d5b11dffb70bc5a2036eb83c80ef6bd200/packages/astro-friday/src/routes/post/%5B...slug%5D.astro#L35-L65
+     */
+    seo?: SEO
     /**
      * Nprogress using in astro while the astro view transition is enabled.
      *
