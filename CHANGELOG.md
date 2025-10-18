@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.0.0-beta.14
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.13...v1.0.0-beta.14)
+
+### 🚀 Enhancements
+
+- Appearance support custom ([c14341b](https://github.com/byronogis/astro-friday/commit/c14341b))
+
+### 🔥 Performance
+
+- Remove view transition directive if disabled ([b29e809](https://github.com/byronogis/astro-friday/commit/b29e809))
+
+### 🏡 Chore
+
+- Update deps ([752abec](https://github.com/byronogis/astro-friday/commit/752abec))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.13
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.12...v1.0.0-beta.13)
