@@ -7,6 +7,7 @@ import type { SetRequiredDeep } from 'type-fest'
 import type { Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
+import type { Appearance } from './utils/appearance'
 import path from 'node:path'
 import { defu } from 'defu'
 
@@ -59,6 +60,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       dots: { weight: 1 },
       plum: { weight: 1 },
     },
+    appearance: 'dynamic',
     imports: {
       '@vercel/og': '@vercel/og',
     },
@@ -283,6 +285,16 @@ export interface Config {
    */
   art?: Partial<Record<'dots' | 'plum', Partial<ArtConfig>>>
   /**
+   * The appearance (theme) toggle behavior
+   *
+   * - `plain`: simply toggle between light and dark mode
+   * - `dynamic`: toggle with a dynamic circular reveal effect
+   * - custom function: provide your own implementation
+   *
+   * @default 'dynamic'
+   */
+  appearance?: 'plain' | 'dynamic' | Appearance
+  /**
    * Custom the path of function imports
    *
    * @see https://byronogis.github.io/astro-friday/post/custom-og-middleware-handler
@@ -395,6 +407,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'art.plum'
   | 'art.dots.weight'
   | 'art.plum.weight'
+  | 'appearance'
   | 'imports'
   | 'imports.@vercel/og'
   | 'components'

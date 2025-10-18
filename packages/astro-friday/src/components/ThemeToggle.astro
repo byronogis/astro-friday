@@ -16,19 +16,24 @@ import { ThemeSwitch } from 'astro-color-scheme'
 <script>
 import type { WithViewTransitionState } from 'astro-view-transition-script'
 import { withViewTransition } from 'astro-view-transition-script'
-import { toggleDark } from '../utils/theme'
+import config from 'virtual:astro-friday-config'
+import { dynamic } from '../utils/appearance'
 
 function task(state: WithViewTransitionState) {
   const callback = state.document.getElementById('header-theme-toggle-btn--callback')
   const trigger = state.document.getElementById('header-theme-toggle-btn--trigger')
   trigger?.addEventListener('click', (e) => {
     const isDark = state.document.documentElement.classList.contains('dark')
-    toggleDark(e, { isDark: !isDark, toggle: () => callback?.click() })
+    ;({
+      plain: () => callback?.click(),
+      dynamic,
+      // @ts-expect-error ignore
+    }[config.appearance] ?? config.appearance)(e, { isDark: !isDark, toggle: () => callback?.click() })
   })
 }
 
 withViewTransition({
   initial: task,
-  beforeSwap: task,
+  afterSwap: task,
 })
 </script>

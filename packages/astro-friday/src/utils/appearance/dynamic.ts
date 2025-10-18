@@ -1,11 +1,10 @@
+import type { Appearance } from './index'
+
 /**
  * Credit to [@hooray](https://github.com/hooray)
  * @see https://github.com/vuejs/vitepress/pull/2347
  */
-export function toggleDark(event: MouseEvent, options: {
-  isDark: boolean
-  toggle?: () => (Promise<void> | void)
-}) {
+export const dynamic: Appearance = function dynamic(event, options) {
   const {
     isDark,
     toggle = () => void 0,
