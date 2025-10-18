@@ -57,7 +57,11 @@ const groupedByYear = entryList.reduce((acc, entry) => {
                       : [entry.id],
                   )}
                 >
-                  <span class="text-#000 dark:text-#fff" transition:name={`post:${entry.id}`}>{entry.data.title}</span>
+                  {
+                    config.viewTransition.enable
+                      ? <span class="text-#000 dark:text-#fff" transition:name={`post:${entry.id}`}>{entry.data.title}</span>
+                      : <span class="text-#000 dark:text-#fff">{entry.data.title}</span>
+                  }
 
                   <div class="flex gap-2 items-center">
                     <span class="text-sm ws-nowrap">

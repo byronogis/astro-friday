@@ -1,7 +1,9 @@
 ---
+import config from 'virtual:astro-friday-config'
 import DefaultLayout from '../../layouts/Default.astro'
 import { getPostList } from '../../utils/content/post'
 import { getPath } from '../../utils/path'
+
 
 const seriesInfos = await getPostList({
   groupBy: 'series',
@@ -21,7 +23,11 @@ const seriesInfos = await getPostList({
           href={getPath('series', [series])}
           class="text-xl py-2 pr-4 hoverable-text relative"
         >
-          <span transition:name={`series:${series}`}>{series}</span>
+          {
+            config.viewTransition.enable
+              ? <span transition:name={`series:${series}`}>{series}</span>
+              : <span>{series}</span>
+          }
           <span class="text-sm font-italic right-0 top-0 absolute z-1">{entryList.length}</span>
         </a>
       </li>

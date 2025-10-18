@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from '../types/content'
+import config from 'virtual:astro-friday-config'
 import { formatDate } from '../utils/date'
 
 interface Props {
@@ -11,7 +12,11 @@ const { entry } = Astro.props
 ---
 
 <div class="mx-auto prose dark:prose-invert">
-  <h1 transition:name={`post:${entry.id}`}>{entry.data.title}</h1>
+  {
+    config.viewTransition.enable
+      ? <h1 transition:name={`post:${entry.id}`}>{entry.data.title}</h1>
+      : <h1>{entry.data.title}</h1>
+  }
 
   <p class="op-50 !-mt-6">
     <span class="text-sm ws-nowrap">
