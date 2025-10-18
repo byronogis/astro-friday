@@ -157,7 +157,7 @@ importers:
         version: 5.14.5(@types/node@20.8.0)(jiti@2.6.1)(rollup@4.52.2)(typescript@5.9.3)(yaml@2.8.1)
       astro-color-scheme:
         specifier: git+https://github.com/byronogis/astro-color-scheme.git#feat-support-astro-view-transition
-        version: https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/4ab96d0de144e83837057b508dd0db26a5d9a6d3
+        version: https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/d6fd80019afd670357ce5736865257dd4dadc912
       astro-nprogress:
         specifier: ^0.0.2
         version: 0.0.2(astro@5.14.5(@types/node@20.8.0)(jiti@2.6.1)(rollup@4.52.2)(typescript@5.9.3)(yaml@2.8.1))
@@ -1516,8 +1516,8 @@ packages:
   assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
 
-  astro-color-scheme@https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/4ab96d0de144e83837057b508dd0db26a5d9a6d3:
-    resolution: {tarball: https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/4ab96d0de144e83837057b508dd0db26a5d9a6d3}
+  astro-color-scheme@https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/d6fd80019afd670357ce5736865257dd4dadc912:
+    resolution: {tarball: https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/d6fd80019afd670357ce5736865257dd4dadc912}
     version: 1.1.5
 
   astro-eslint-parser@1.2.2:
@@ -5244,7 +5244,7 @@ snapshots:
   assertion-error@1.1.0:
     optional: true
 
-  astro-color-scheme@https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/4ab96d0de144e83837057b508dd0db26a5d9a6d3: {}
+  astro-color-scheme@https://codeload.github.com/byronogis/astro-color-scheme/tar.gz/d6fd80019afd670357ce5736865257dd4dadc912: {}
 
   astro-eslint-parser@1.2.2:
     dependencies:
