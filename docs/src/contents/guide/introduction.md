@@ -86,6 +86,15 @@ More settings can be found in [here](./configuration).
 - [ ] search
 - [x] toc
 - [x] keywords frontmatter field and seo binding
+- [ ] frontmatter keys mapping
+- [ ] auto update last modified time
+- [ ] loader and schema customization
+- [ ] code block optimization (line numbers, copy button, etc.)
+- [ ] mdx support
+- [ ] download as markdown (maybe useful for mdx and also md which processed)
+- [ ] multi-language version support
+- [ ] og image parameter customization
+- [ ] configuration doc generate automatically
 - etc.
 
 ## Credits
