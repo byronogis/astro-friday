@@ -24,13 +24,12 @@ export function integration(userConfig: Config = {}): AstroIntegration {
     hooks: {
       'astro:config:setup': ({
         command,
-        config,
+        config: astroConfig,
         updateConfig,
         injectRoute,
         addWatchFile,
       }) => {
-        const isDev = command !== 'build'
-        const resolvedConfig = resolveConfig(userConfig, config, isDev)
+        const resolvedConfig = resolveConfig(userConfig, astroConfig)
 
         if (command === 'dev') {
           addWatchFile(path.resolve(_dirname, './collection.ts'))
@@ -41,10 +40,10 @@ export function integration(userConfig: Config = {}): AstroIntegration {
 
         updateConfig({
           integrations: [
-            ...unocss(config),
-            ...nprogress(config, resolvedConfig),
-            ...sitemap(config, resolvedConfig),
-            ...robotsTxt(config, resolvedConfig),
+            ...unocss(resolvedConfig, astroConfig),
+            ...nprogress(resolvedConfig, astroConfig),
+            ...sitemap(resolvedConfig, astroConfig),
+            ...robotsTxt(resolvedConfig, astroConfig),
           ],
           vite: {
             plugins: [

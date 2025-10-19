@@ -6,7 +6,7 @@ import fs from 'node:fs/promises'
  * This is a built-in integration to generate robots.txt during the build process.
  * It supports fetching remote robots.txt content as well as appending local rules.
  */
-export function robotsTxt(astroConfig: AstroConfig, resolvedConfig: ResolvedConfig) {
+export function robotsTxt(resolvedConfig: ResolvedConfig, _astroConfig: AstroConfig) {
   const config = resolvedConfig.integrations.robotsTxt
   if (config === false) {
     return []

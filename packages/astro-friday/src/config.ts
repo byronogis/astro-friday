@@ -103,14 +103,14 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
   }
 }
 
-export function resolveConfig(userConfig: Config, astroConfig: AstroConfig, isDev: boolean): ResolvedConfig {
+export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): ResolvedConfig {
   const base = userConfig.base ?? '/'
   const baseFull = path.join('/', astroConfig.base, base)
 
   const defaultConfig = getDefaultConfig(userConfig, astroConfig)
 
   // use default config for development to avoid issues with Vercel OG package
-  isDev && delete userConfig.imports?.['@vercel/og']
+  import.meta.env.DEV && delete userConfig.imports?.['@vercel/og']
 
   const mergedConfig = defu(
     {
