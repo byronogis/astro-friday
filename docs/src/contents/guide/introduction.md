@@ -95,6 +95,8 @@ More settings can be found in [here](./configuration).
 - [ ] multi-language version support
 - [ ] og image parameter customization
 - [ ] configuration doc generate automatically
+- [ ] assets management
+- [ ] image preview
 - etc.
 
 ## Credits
