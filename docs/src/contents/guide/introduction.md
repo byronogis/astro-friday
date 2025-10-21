@@ -93,7 +93,7 @@ More settings can be found in [here](./configuration).
 - [ ] mdx support
 - [ ] download as markdown (maybe useful for mdx and also md which processed)
 - [ ] multi-language version support
-- [ ] og image parameter customization
+- [x] og image parameter customization
 - [ ] configuration doc generate automatically
 - [ ] assets management
 - [ ] image preview

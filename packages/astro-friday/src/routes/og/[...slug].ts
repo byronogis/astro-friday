@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import type { CollectionEntry } from '../../types/content'
+import config from 'virtual:astro-friday-config'
 import imports from 'virtual:astro-friday-imports'
 import { getPostList } from '../../utils/content/post'
 
@@ -24,31 +25,5 @@ export async function getStaticPaths() {
 export const GET: APIRoute<Props> = async function GET({ props }) {
   const { entry } = props
 
-  const html = {
-    type: 'div',
-    props: {
-      children: [
-        {
-          type: 'span',
-          props: {
-            children: entry.data.title,
-            tw: 'text-6xl font-bold',
-          },
-        },
-        {
-          span: 'span',
-          props: {
-            children: entry.data.author,
-            tw: 'mt-4 text-3xl opacity-60',
-          },
-        },
-      ],
-      tw: 'w-full h-full flex flex-col gap-2 items-start justify-center p-20 bg-#f7f8e8',
-    },
-  }
-
-  return new imports['@vercel/og'].ImageResponse(html, {
-    width: 1200,
-    height: 630,
-  })
+  return new imports['@vercel/og'].ImageResponse(...config.post.og(entry))
 }

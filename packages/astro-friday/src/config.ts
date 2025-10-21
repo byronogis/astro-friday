@@ -7,6 +7,7 @@ import type { SetRequiredDeep } from 'type-fest'
 import type { Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
+import type { CollectionEntry } from './types/content'
 import type { Appearance } from './utils/appearance'
 import path from 'node:path'
 import { defu } from 'defu'
@@ -36,6 +37,35 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       toc: {
         enable: true,
         range: [2, 4],
+      },
+      og: (entry: CollectionEntry) => {
+        const html = {
+          type: 'div',
+          props: {
+            children: [
+              {
+                type: 'span',
+                props: {
+                  children: entry.data.title,
+                  tw: 'text-6xl font-bold',
+                },
+              },
+              {
+                span: 'span',
+                props: {
+                  children: entry.data.author,
+                  tw: 'mt-4 text-3xl opacity-60',
+                },
+              },
+            ],
+            tw: 'w-full h-full flex flex-col gap-2 items-start justify-center p-20 bg-#f7f8e8',
+          },
+        }
+
+        return [html, {
+          width: 1200,
+          height: 630,
+        }]
       },
     },
     collections: {},
@@ -222,6 +252,12 @@ export interface Config {
      * { enable: true, range: [2, 4] }
      */
     toc?: Partial<Schema['toc']>
+    /**
+     * Open Graph (OG) metadata for social media sharing
+     *
+     * NOTE: You can access the frontmatter from `entry.data`, e.g. `entry.data.title`
+     */
+    og?: (entry: CollectionEntry) => ConstructorParameters<typeof import('@vercel/og').ImageResponse>
   }
   /**
    * Define content collections
@@ -396,6 +432,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.toc'
   | 'post.toc.enable'
   | 'post.toc.range'
+  | 'post.og'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`
