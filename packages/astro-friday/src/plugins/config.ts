@@ -14,7 +14,15 @@ export function vitePluginAstroFridayConfig(resolvedConfig: ResolvedConfig) {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
-        return /* js */`export default ${JSON.stringify(resolvedConfig)}
+        // TODO
+        // using globalThis to store the config is a bit of a hack to
+        // accept function serialization limitations.
+        //
+        // We should look into a more robust solution in the future.
+
+        // @ts-expect-error globalThis typing
+        globalThis[virtualModuleId] = resolvedConfig
+        return /* js */`export default globalThis['${virtualModuleId}']
         `
       }
     },
