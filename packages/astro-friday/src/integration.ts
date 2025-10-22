@@ -7,6 +7,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
 import { resolveConfig } from './config'
+import { mdx } from './integrations/mdx'
 import { nprogress } from './integrations/nprogress'
 import { robotsTxt } from './integrations/robotsTxt'
 import { sitemap } from './integrations/sitemap'
@@ -41,11 +42,12 @@ export function integration(userConfig: Config = {}): AstroIntegration {
 
         updateConfig({
           integrations: [
-            ...unocss(resolvedConfig, astroConfig),
-            ...nprogress(resolvedConfig, astroConfig),
-            ...sitemap(resolvedConfig, astroConfig),
-            ...robotsTxt(resolvedConfig, astroConfig),
-          ],
+            unocss(resolvedConfig, astroConfig),
+            nprogress(resolvedConfig, astroConfig),
+            sitemap(resolvedConfig, astroConfig),
+            robotsTxt(resolvedConfig, astroConfig),
+            mdx(resolvedConfig, astroConfig),
+          ].flat(),
           vite: {
             plugins: [
               vitePluginAstroFridayConfig(resolvedConfig),

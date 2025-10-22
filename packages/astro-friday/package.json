@@ -38,6 +38,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
+    "@astrojs/mdx": "catalog:deps",
     "@astrojs/sitemap": "catalog:seo",
     "@iconify-json/lucide": "catalog:icons",
     "@vercel/og": "catalog:seo",

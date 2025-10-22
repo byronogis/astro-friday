@@ -1,0 +1,24 @@
+---
+title: MDX Style Guide
+tags:
+  - astro
+  - markdown
+  - mdx
+  - guide
+  - astro-friday
+created: 2025-10-22
+description: A style guide for writing MDX content in Astro projects using Astro Friday.
+---
+import { Code } from 'astro/components';
+
+> {frontmatter.description}
+
+## props
+
+You can access the following `props` in your MDX files when using Astro Friday:
+
+<Code code={JSON.stringify(props, null, 2)} lang="js" />
+
+**Link Using processed frontmatter data:**
+
+`props.entry.data.author`: {props.entry.data.author}

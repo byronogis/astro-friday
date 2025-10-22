@@ -6,6 +6,7 @@ catalogs:
   build:
     astro: ^5.14.8
   deps:
+    '@astrojs/mdx': ^4.3.7
     astro-color-scheme: ^1.1.5
     astro-integration-kit: ^0.19.1
     c12: ^3.3.1

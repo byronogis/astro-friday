@@ -80,6 +80,6 @@ const toc = {
   <ArticleDetail {entry}>
     { toc.enable && headings.length ? (<ArticleTOC {headings} {toc} />) : null }
 
-    <Content />
+    <Content {entry} />
   </ArticleDetail>
 </DefaultLayout>

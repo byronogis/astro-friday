@@ -1,3 +1,4 @@
+import type { MdxOptions } from '@astrojs/mdx'
 import type { SitemapOptions } from '@astrojs/sitemap'
 import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
@@ -480,6 +481,12 @@ export interface Config {
      * - Sitemap: <your-site-url>/sitemap-index.xml
      */
     robotsTxt?: RobotsTxtOptions | false
+    /**
+     * MDX integration using `@astrojs/mdx`.
+     *
+     * @see https://docs.astro.build/en/guides/integrations-guide/mdx/
+     */
+    mdx?: MdxOptions | false
   }
   /**
    * Project showcase items, used in the `/project` page.
@@ -528,6 +535,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'integrations.nprogress'
   | 'integrations.sitemap'
   | 'integrations.robotsTxt'
+  | 'integrations.mdx'
   | 'projects'
 > & {
   /**

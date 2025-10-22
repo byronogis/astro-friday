@@ -19,14 +19,14 @@ export default defineConfig({
         guide: {
           label: 'Guide',
           glob: {
-            pattern: '**/*.md',
+            pattern: '**/*.{md,mdx}',
             base: './src/contents/guide',
           },
         },
         recipes: {
           label: 'Recipes',
           glob: {
-            pattern: '**/*.md',
+            pattern: '**/*.{md,mdx}',
             base: './src/contents/recipes',
           },
         },
