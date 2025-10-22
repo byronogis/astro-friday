@@ -25,5 +25,5 @@ export async function getStaticPaths() {
 export const GET: APIRoute<Props> = async function GET({ props }) {
   const { entry } = props
 
-  return new imports['@vercel/og'].ImageResponse(...config.post.og(entry))
+  return new imports['@vercel/og'].ImageResponse(...config.post.og(entry, config))
 }

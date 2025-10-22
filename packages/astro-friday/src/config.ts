@@ -57,7 +57,8 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         enable: true,
         range: [2, 4],
       },
-      og: (entry: CollectionEntry) => {
+      og: (entry: CollectionEntry, config) => {
+        const fKeys = config.post.frontmatterKeys
         const html = {
           type: 'div',
           props: {
@@ -174,6 +175,33 @@ export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): Res
   return mergedConfig
 }
 
+/**
+ * NOTE: When passing functions as configuration values, they must be context-independent.
+ * This means all variables used within the function scope must be either:
+ * - Parameters of the function
+ * - Variables declared inside the function
+ * - Built-in globals (e.g., console, Date, etc.)
+ *
+ * Functions cannot access variables from the outer scope where they are defined,
+ * as they will be serialized and executed in a different context.
+ *
+ * ✅ Good example:
+ * ```ts
+ * og: (entry) => {
+ *   const title = entry.data.title || 'Default Title'
+ *   return [title, { width: 1200, height: 630 }]
+ * }
+ * ```
+ *
+ * ❌ Bad example:
+ * ```ts
+ * const defaultTitle = 'My Site'
+ * og: (entry) => {
+ *   const title = entry.data.title || defaultTitle // ❌ defaultTitle is not available
+ *   return [title, { width: 1200, height: 630 }]
+ * }
+ * ```
+ */
 export interface Config {
   /**
    * The site title, used in the navbar and SEO metadata.
@@ -277,7 +305,7 @@ export interface Config {
      *
      * NOTE: You can access the frontmatter from `entry.data`, e.g. `entry.data.title`
      */
-    og?: (entry: CollectionEntry) => ConstructorParameters<typeof import('@vercel/og').ImageResponse>
+    og?: (entry: CollectionEntry, config: ResolvedConfig) => ConstructorParameters<typeof import('@vercel/og').ImageResponse>
     /**
      * frontmatter keys mapping to Schema fields
      *
