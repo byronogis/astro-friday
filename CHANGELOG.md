@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v1.0.0-beta.15
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.14...v1.0.0-beta.15)
+
+### 🚀 Enhancements
+
+- Og support custom by config `post.og` ([b435b24](https://github.com/byronogis/astro-friday/commit/b435b24))
+- Frontmatter keys mapping ([ea1c696](https://github.com/byronogis/astro-friday/commit/ea1c696))
+- Support function while config value define ([4ec0471](https://github.com/byronogis/astro-friday/commit/4ec0471))
+
+### 🩹 Fixes
+
+- Debug command ([1d5c25c](https://github.com/byronogis/astro-friday/commit/1d5c25c))
+- Function disappear in config virtual module ([d3db277](https://github.com/byronogis/astro-friday/commit/d3db277))
+- Function disappear in config virtual module" ([a92cb76](https://github.com/byronogis/astro-friday/commit/a92cb76))
+
+### 📖 Documentation
+
+- Update rodemap ([5aa3cf0](https://github.com/byronogis/astro-friday/commit/5aa3cf0))
+- Update roadmap ([badd910](https://github.com/byronogis/astro-friday/commit/badd910))
+
+### 🏡 Chore
+
+- Add vite-plugin-inspect for debugging ([73c2531](https://github.com/byronogis/astro-friday/commit/73c2531))
+- Update deps ([d8c37c6](https://github.com/byronogis/astro-friday/commit/d8c37c6))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.14
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.13...v1.0.0-beta.14)
