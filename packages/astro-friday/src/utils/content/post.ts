@@ -28,6 +28,8 @@ export function getPostList(
   const tags = [filters.tags || []].flat()
   const series = [filters.series || []].flat()
 
+  const fKeys = config.post.frontmatterKeys
+
   const tasks = Object.keys(config.collections).map(name => getCollection(name, (entry) => {
     const {
       data,
@@ -36,14 +38,14 @@ export function getPostList(
     /**
      * Filter by tags
      */
-    if (tags.length && tags.every(tag => !data.tags.includes(tag))) {
+    if (tags.length && tags.every(tag => !data[fKeys.tags].includes(tag))) {
       return false
     }
 
     /**
      * Filter by series
      */
-    if (series.length && series.every(series_ => !data.series.includes(series_))) {
+    if (series.length && series.every(series_ => !data[fKeys.series].includes(series_))) {
       return false
     }
 
@@ -54,10 +56,10 @@ export function getPostList(
     .then(lists => lists.flat())
     .then(list => list.sort((a, b) => {
       if (sort === 'created-asc') {
-        return dayjs(a.data.created).isAfter(dayjs(b.data.created)) ? 1 : -1
+        return dayjs(a.data[fKeys.created]).isAfter(dayjs(b.data[fKeys.created])) ? 1 : -1
       }
       else if (sort === 'created-desc') {
-        return dayjs(a.data.created).isBefore(dayjs(b.data.created)) ? 1 : -1
+        return dayjs(a.data[fKeys.created]).isBefore(dayjs(b.data[fKeys.created])) ? 1 : -1
       }
       return 0
     }))
@@ -67,9 +69,9 @@ export function getPostList(
 
       return list.reduce((acc, cur) => {
         const key = {
-          year: () => String(dayjs(cur.data.created).year()),
-          tag: () => cur.data.tags,
-          series: () => cur.data.series,
+          year: () => String(dayjs(cur.data[fKeys.created]).year()),
+          tag: () => cur.data[fKeys.tags],
+          series: () => cur.data[fKeys.series],
           collection: () => cur.collection,
         }[groupBy]()
 

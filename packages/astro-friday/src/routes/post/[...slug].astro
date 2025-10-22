@@ -25,6 +25,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 
+const fKeys = config.post.frontmatterKeys
+
 const {
   Content,
   headings,
@@ -33,17 +35,17 @@ const {
 
 const toc = {
   ...config.post.toc,
-  ...entry.data.toc,
+  ...entry.data[fKeys.toc],
 }
 ---
 
 <DefaultLayout
   seo={{
-    noindex: entry.data.draft,
-    nofollow: entry.data.draft,
+    noindex: entry.data[fKeys.draft],
+    nofollow: entry.data[fKeys.draft],
     openGraph: {
       basic: {
-        title: entry.data.title,
+        title: entry.data[fKeys.title],
         type: 'article',
         image: getPath(
           'og',
@@ -55,22 +57,22 @@ const toc = {
         url: Astro.url.href,
       },
       article: {
-        publishedTime: entry.data.created,
-        modifiedTime: entry.data.modified || entry.data.created,
-        authors: [entry.data.author],
+        publishedTime: entry.data[fKeys.created],
+        modifiedTime: entry.data[fKeys.modified] || entry.data[fKeys.created],
+        authors: [entry.data[fKeys.author]],
         section: undefined,
-        tags: entry.data.tags,
+        tags: entry.data[fKeys.tags],
       },
       image: {
         type: 'image/png',
         width: 1200,
         height: 630,
-        alt: entry.data.title,
+        alt: entry.data[fKeys.title],
       },
     },
     extend: {
       meta: [
-        { name: 'keywords', content: entry.data.keywords.join(', ') || '' },
+        { name: 'keywords', content: entry.data[fKeys.keywords].join(', ') || '' },
       ],
     },
   }}

@@ -3,8 +3,8 @@ import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
 import type { Props as SEO } from 'astro-seo'
 import type { glob } from 'astro/loaders'
-import type { SetRequiredDeep } from 'type-fest'
-import type { Schema } from './collection'
+import type { OmitDeep, SetRequiredDeep } from 'type-fest'
+import type { FrontmatterKeysInternal, Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
 import type { CollectionEntry } from './types/content'
@@ -17,6 +17,25 @@ type GlobOptions = Parameters<typeof glob>[0]
 export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): Config {
   const base = userConfig.base ?? '/'
   const baseFull = path.join('/', astroConfig.base, base)
+
+  const fKeysDefault = {
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    created: 'created',
+    modified: 'modified',
+    author: 'author',
+    series: 'series',
+    tags: 'tags',
+    keywords: 'keywords',
+    draft: 'draft',
+    lang: 'lang',
+    toc: 'toc',
+  } satisfies ResolvedConfig['post']['frontmatterKeys']
+  const fKeys = defu(
+    userConfig.post?.frontmatterKeys,
+    fKeysDefault,
+  ) as ResolvedConfig['post']['frontmatterKeys']
 
   return {
     title: 'Friday',
@@ -46,14 +65,14 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
               {
                 type: 'span',
                 props: {
-                  children: entry.data.title,
+                  children: entry.data[fKeys.title],
                   tw: 'text-6xl font-bold',
                 },
               },
               {
                 span: 'span',
                 props: {
-                  children: entry.data.author,
+                  children: entry.data[fKeys.author],
                   tw: 'mt-4 text-3xl opacity-60',
                 },
               },
@@ -67,6 +86,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           height: 630,
         }]
       },
+      frontmatterKeys: fKeys,
     },
     collections: {},
     navigations: {
@@ -258,6 +278,31 @@ export interface Config {
      * NOTE: You can access the frontmatter from `entry.data`, e.g. `entry.data.title`
      */
     og?: (entry: CollectionEntry) => ConstructorParameters<typeof import('@vercel/og').ImageResponse>
+    /**
+     * frontmatter keys mapping to Schema fields
+     *
+     * Like if you want to use `date` instead of `created` in frontmatter,
+     * you can set `{ created = 'date' }` here.
+     *
+     * @default
+     * ```js
+     * {
+     *   title: 'title',
+     *   subtitle: 'subtitle',
+     *   description: 'description',
+     *   created: 'created',
+     *   modified: 'modified',
+     *   author: 'author',
+     *   series: 'series',
+     *   tags: 'tags',
+     *   keywords: 'keywords',
+     *   draft: 'draft',
+     *   lang: 'lang',
+     *   toc: 'toc',
+     * }
+     * ```
+     */
+    frontmatterKeys?: Partial<Record<FrontmatterKeysInternal, string>>
   }
   /**
    * Define content collections
@@ -419,7 +464,7 @@ export interface Config {
 }
 
 export type ResolvedConfig = SetRequiredDeep<
-  Config,
+  OmitDeep<Config, 'post.frontmatterKeys'>,
   | 'title'
   | 'base'
   | 'author'
@@ -461,4 +506,9 @@ export type ResolvedConfig = SetRequiredDeep<
    * The full base path, including Astro's base.
    */
   baseFull: string
+  post: {
+    frontmatterKeys: {
+      [K in FrontmatterKeysInternal]: K
+    }
+  }
 }

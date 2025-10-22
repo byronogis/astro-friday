@@ -86,7 +86,7 @@ More settings can be found in [here](./configuration).
 - [ ] search
 - [x] toc
 - [x] keywords frontmatter field and seo binding
-- [ ] frontmatter keys mapping
+- [x] frontmatter keys mapping
 - [ ] auto update last modified time
 - [ ] loader and schema customization
 - [ ] code block optimization (line numbers, copy button, etc.)

@@ -19,7 +19,9 @@ const { entryList } = Astro.props
  * Use Map to keep the order of years
  */
 const groupedByYear = entryList.reduce((acc, entry) => {
-  const year = dayjs(entry.data.created).year()
+  const fKeys = config.post.frontmatterKeys
+
+  const year = dayjs(entry.data[fKeys.created]).year()
   if (!acc.has(year)) {
     acc.set(year, [])
   }
@@ -46,35 +48,39 @@ const groupedByYear = entryList.reduce((acc, entry) => {
           </div>
 
           <ul class="">
-            {entries.map(entry => (
-              <li class="mb-6 mt-2">
-                <a
-                  class="text-lg leading-1.2em hoverable-text flex flex-col gap-2 md:(flex-row flex-items-center)"
-                  href={getPath(
-                    'post',
-                    config.post.pathStyle === 'collection/id'
-                      ? [entry.collection, entry.id]
-                      : [entry.id],
-                  )}
-                >
-                  {
-                    config.viewTransition.enable
-                      ? <span class="text-#000 dark:text-#fff" transition:name={`post:${entry.id}`}>{entry.data.title}</span>
-                      : <span class="text-#000 dark:text-#fff">{entry.data.title}</span>
-                  }
+            {entries.map((entry) => {
+              const fKeys = config.post.frontmatterKeys
 
-                  <div class="flex gap-2 items-center">
-                    <span class="text-sm ws-nowrap">
-                      { formatDate(entry.data.modified || entry.data.created, true) }
-                    </span>
+              return (
+                <li class="mb-6 mt-2">
+                  <a
+                    class="text-lg leading-1.2em hoverable-text flex flex-col gap-2 md:(flex-row flex-items-center)"
+                    href={getPath(
+                      'post',
+                      config.post.pathStyle === 'collection/id'
+                        ? [entry.collection, entry.id]
+                        : [entry.id],
+                    )}
+                  >
+                    {
+                      config.viewTransition.enable
+                        ? <span class="text-#000 dark:text-#fff" transition:name={`post:${entry.id}`}>{entry.data[fKeys.title]}</span>
+                        : <span class="text-#000 dark:text-#fff">{entry.data[fKeys.title]}</span>
+                    }
 
-                    <span
-                      class="text-xs text-zinc:500 my-auto px-1 py-0.5 align-middle rounded bg-zinc:15 flex-none"
-                    >{entry.collection}</span>
-                  </div>
-                </a>
-              </li>
-            ))}
+                    <div class="flex gap-2 items-center">
+                      <span class="text-sm ws-nowrap">
+                        { formatDate(entry.data[fKeys.modified] || entry.data[fKeys.created], true) }
+                      </span>
+
+                      <span
+                        class="text-xs text-zinc:500 my-auto px-1 py-0.5 align-middle rounded bg-zinc:15 flex-none"
+                      >{entry.collection}</span>
+                    </div>
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </section>
       ))
