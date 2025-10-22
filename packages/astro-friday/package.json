@@ -23,7 +23,8 @@
     "./routes/*": "./src/routes/*",
     "./layouts/*": "./src/layouts/*",
     "./components/*": "./src/components/*",
-    "./integrations/unocss": "./src/integrations/unocss/index.ts"
+    "./integrations/unocss": "./src/integrations/unocss/index.ts",
+    "./package.json": "./package.json"
   },
   "files": [
     "src"
@@ -56,6 +57,7 @@
     "type-fest": "catalog:deps"
   },
   "devDependencies": {
-    "typescript": "catalog:deps"
+    "typescript": "catalog:deps",
+    "vite-plugin-inspect": "^11.3.3"
   }
 }

@@ -5,6 +5,7 @@ import type { AstroIntegration, InjectedRoute } from 'astro'
 import type { Config } from './config'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import Inspect from 'vite-plugin-inspect'
 import { resolveConfig } from './config'
 import { nprogress } from './integrations/nprogress'
 import { robotsTxt } from './integrations/robotsTxt'
@@ -52,6 +53,7 @@ export function integration(userConfig: Config = {}): AstroIntegration {
               vitePluginAstroFridayUnoCSSExtract(resolvedConfig),
               vitePluginAstroFridayImports(resolvedConfig),
               vitePluginAstroFridayComponents(resolvedConfig),
+              Inspect(),
             ],
           },
         })
