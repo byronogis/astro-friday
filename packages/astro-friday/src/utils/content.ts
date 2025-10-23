@@ -1,5 +1,5 @@
 import type { SetRequired } from 'type-fest'
-import type { CollectionEntry } from '../../types/content'
+import type { CollectionEntry } from '../types/content'
 import { getCollection } from 'astro:content'
 import dayjs from 'dayjs'
 import config from 'virtual:astro-friday-config'

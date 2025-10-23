@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro'
 import type { CollectionEntry } from '../../types/content'
 import config from 'virtual:astro-friday-config'
 import imports from 'virtual:astro-friday-imports'
-import { getPostList } from '../../utils/content/post'
+import { getPostList } from '../../utils/content'
 
 interface Props {
   entry: CollectionEntry
