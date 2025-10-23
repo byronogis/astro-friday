@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.0-beta.17
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.16...v1.0.0-beta.17)
+
+### 🩹 Fixes
+
+- Post export ([53a424c](https://github.com/byronogis/astro-friday/commit/53a424c))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.16
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.15...v1.0.0-beta.16)
