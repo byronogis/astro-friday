@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.0.0-beta.16
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.15...v1.0.0-beta.16)
+
+### 🚀 Enhancements
+
+- Support mdx ([d93ef6a](https://github.com/byronogis/astro-friday/commit/d93ef6a))
+- Post support markdown file export ([93b2e9a](https://github.com/byronogis/astro-friday/commit/93b2e9a))
+
+### 🩹 Fixes
+
+- Theme toggle void while after view transition ([adfd784](https://github.com/byronogis/astro-friday/commit/adfd784))
+
+### 💅 Refactors
+
+- Move and rename content/post util ([949c39b](https://github.com/byronogis/astro-friday/commit/949c39b))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.15
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.14...v1.0.0-beta.15)
