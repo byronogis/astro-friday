@@ -50,47 +50,55 @@ const fKeys = config.post.frontmatterKeys
   }
 </div>
 
-<article class="displaying-table-of-contents mx-auto prose dark:prose-invert">
+<article class="component-article-detail__article displaying-table-of-contents mx-auto prose dark:prose-invert">
   <slot />
 </article>
 
 <script is:inline type="module" define:vars={{ entry, config }}>
+import { withViewTransition } from 'https://esm.sh/astro-view-transition-script@latest'
+import rehypeParse from 'https://esm.sh/rehype-parse@9?bundle'
+import rehypeRemark from 'https://esm.sh/rehype-remark@10?bundle'
+import remarkGfm from 'https://esm.sh/remark-gfm@4?bundle'
+import remarkStringify from 'https://esm.sh/remark-stringify@11?bundle'
 import { unified } from 'https://esm.sh/unified@11?bundle'
 import { stringify } from 'https://esm.sh/yaml@2?bundle&exports=stringify'
-import rehypeParse from 'rehype-parse'
-import rehypeRemark from 'rehype-remark'
-import remarkGfm from 'remark-gfm'
-import remarkStringify from 'remark-stringify'
 
-const md = config.post.export.md
+function task(state) {
+  const md = config.post.export.md
 
-if (md) {
-  const article = document.querySelector('article')
-  const btnExport2Md = document.querySelector('.btn-export-to-md')
-  btnExport2Md.addEventListener('click', async () => {
+  if (md) {
+    const article = state.document.querySelector('.component-article-detail__article')
     if (!article)
       return
 
-    const html = article.innerHTML
+    const btnExport2Md = state.document.querySelector('.btn-export-to-md')
+    btnExport2Md.addEventListener('click', async () => {
+      const html = article.innerHTML
 
-    const file = await unified()
-      .use(rehypeParse, md.rehypeParse)
-      .use(rehypeRemark, md.rehypeRemark)
-      .use(remarkGfm, md.remarkGfm)
-      .use(remarkStringify, md.remarkStringify)
-      .process(html)
+      const file = await unified()
+        .use(rehypeParse, md.rehypeParse)
+        .use(rehypeRemark, md.rehypeRemark)
+        .use(remarkGfm, md.remarkGfm)
+        .use(remarkStringify, md.remarkStringify)
+        .process(html)
 
-    const frontmatter = stringify(entry.data)
+      const frontmatter = stringify(entry.data)
 
-    const blob = new Blob([`---\n${frontmatter}---\n\n${file.toString()}`], { type: 'text/markdown' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${entry.id}.md`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  })
+      const blob = new Blob([`---\n${frontmatter}---\n\n${file.toString()}`], { type: 'text/markdown' })
+      const url = URL.createObjectURL(blob)
+      const a = state.document.createElement('a')
+      a.href = url
+      a.download = `${entry.id}.md`
+      state.document.body.appendChild(a)
+      a.click()
+      state.document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    })
+  }
 }
+
+withViewTransition({
+  initial: task,
+  done: task,
+})
 </script>
