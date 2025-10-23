@@ -44,6 +44,11 @@ catalogs:
     astro-seo: ^0.8.4
   types:
     '@types/nprogress': ^0.2.3
+  unified:
+    rehype-parse: ^9.0.1
+    rehype-remark: ^10.0.1
+    remark-gfm: ^4.0.1
+    remark-stringify: ^11.0.0
 
 enablePrePostScripts: true
 

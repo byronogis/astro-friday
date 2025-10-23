@@ -46,6 +46,10 @@
     "astro-seo": "catalog:seo",
     "dayjs": "catalog:deps",
     "pixi.js": "catalog:frontend",
+    "rehype-parse": "catalog:unified",
+    "rehype-remark": "catalog:unified",
+    "remark-gfm": "catalog:unified",
+    "remark-stringify": "catalog:unified",
     "simplex-noise": "catalog:frontend",
     "unocss": "catalog:deps",
     "unocss-preset-scrollbar": "catalog:deps"

@@ -4,6 +4,10 @@ import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
 import type { Props as SEO } from 'astro-seo'
 import type { glob } from 'astro/loaders'
+import type { Options as rehypeParseOptions } from 'rehype-parse'
+import type { Options as rehypeRemarkOptions } from 'rehype-remark'
+import type { Options as remarkGfmOptions } from 'remark-gfm'
+import type { Options as remarkStringifyOptions } from 'remark-stringify'
 import type { OmitDeep, SetRequiredDeep } from 'type-fest'
 import type { FrontmatterKeysInternal, Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
@@ -89,6 +93,13 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         }]
       },
       frontmatterKeys: fKeys,
+      export: {
+        md: {
+          rehypeParse: {
+            fragment: true,
+          },
+        },
+      },
     },
     collections: {},
     navigations: {
@@ -332,6 +343,40 @@ export interface Config {
      * ```
      */
     frontmatterKeys?: Partial<Record<FrontmatterKeysInternal, string>>
+    /**
+     * Post export options
+     */
+    export?: {
+      /**
+       * Markdown export options, you can customize the markdown export behavior here.
+       *
+       * Set to `false` to disable markdown export.
+       *
+       * We using unified with rehype and remark plugins to convert HTML back to Markdown.
+       * You can pass options to the underlying plugins here.
+       */
+      md?: {
+        /**
+         * @default
+         * { fragment: true }
+         *
+         * @see https://github.com/rehypejs/rehype/blob/main/packages/rehype-parse/readme.md
+         */
+        rehypeParse?: rehypeParseOptions
+        /**
+         * @see https://github.com/rehypejs/rehype-remark
+         */
+        rehypeRemark?: rehypeRemarkOptions
+        /**
+         * @see https://github.com/remarkjs/remark-gfm
+         */
+        remarkGfm?: remarkGfmOptions
+        /**
+         * @see https://github.com/remarkjs/remark/tree/main/packages/remark-stringify
+         */
+        remarkStringify?: remarkStringifyOptions
+      } | false
+    }
   }
   /**
    * Define content collections
@@ -513,6 +558,8 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.toc.enable'
   | 'post.toc.range'
   | 'post.og'
+  | 'post.export'
+  | 'post.export.md'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`

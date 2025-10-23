@@ -78,7 +78,14 @@ const toc = {
   }}
 >
   <ArticleDetail {entry}>
-    { toc.enable && headings.length ? (<ArticleTOC {headings} {toc} />) : null }
+    {
+    toc.enable && headings.length
+      ? (
+        <h2 class="hidden">Table of Contents</h2>
+        <ArticleTOC {headings} {toc} />
+      )
+      : null
+    }
 
     <Content {entry} />
   </ArticleDetail>

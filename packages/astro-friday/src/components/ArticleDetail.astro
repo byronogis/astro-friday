@@ -30,6 +30,12 @@ const fKeys = config.post.frontmatterKeys
   </p>
 
   {
+    config.post.export.md
+      ? <button class="btn-export-to-md btn-blue">Export MD</button>
+      : null
+  }
+
+  {
     entry.data[fKeys.subtitle] && (
       <p class="op-50 italic !-mt-6">{entry.data[fKeys.subtitle]}</p>
     )
@@ -47,3 +53,44 @@ const fKeys = config.post.frontmatterKeys
 <article class="displaying-table-of-contents mx-auto prose dark:prose-invert">
   <slot />
 </article>
+
+<script is:inline type="module" define:vars={{ entry, config }}>
+import { unified } from 'https://esm.sh/unified@11?bundle'
+import { stringify } from 'https://esm.sh/yaml@2?bundle&exports=stringify'
+import rehypeParse from 'rehype-parse'
+import rehypeRemark from 'rehype-remark'
+import remarkGfm from 'remark-gfm'
+import remarkStringify from 'remark-stringify'
+
+const md = config.post.export.md
+
+if (md) {
+  const article = document.querySelector('article')
+  const btnExport2Md = document.querySelector('.btn-export-to-md')
+  btnExport2Md.addEventListener('click', async () => {
+    if (!article)
+      return
+
+    const html = article.innerHTML
+
+    const file = await unified()
+      .use(rehypeParse, md.rehypeParse)
+      .use(rehypeRemark, md.rehypeRemark)
+      .use(remarkGfm, md.remarkGfm)
+      .use(remarkStringify, md.remarkStringify)
+      .process(html)
+
+    const frontmatter = stringify(entry.data)
+
+    const blob = new Blob([`---\n${frontmatter}---\n\n${file.toString()}`], { type: 'text/markdown' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${entry.id}.md`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  })
+}
+</script>

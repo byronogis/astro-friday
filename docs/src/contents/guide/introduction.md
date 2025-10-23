@@ -91,7 +91,7 @@ More settings can be found in [here](./configuration).
 - [ ] loader and schema customization
 - [ ] code block optimization (line numbers, copy button, etc.)
 - [x] mdx support
-- [ ] download as markdown (maybe useful for mdx and also md which processed)
+- [x] download as markdown (maybe useful for mdx and also md which processed)
 - [ ] multi-language version support
 - [x] og image parameter customization
 - [ ] configuration doc generate automatically

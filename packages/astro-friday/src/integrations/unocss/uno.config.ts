@@ -13,10 +13,17 @@ import {
 import { presetScrollbar } from 'unocss-preset-scrollbar'
 
 export default defineConfig({
-  shortcuts: {
-    'hoverable-text': 'opacity-60 hover:opacity-100 transition-(opacity 200 ease)',
-    'live-area': 'max-w-65ch max-w-65rch mx-auto',
-  },
+  shortcuts: [
+    {
+      'hoverable-text': 'opacity-60 hover:opacity-100 transition-(opacity 200 ease)',
+      'live-area': 'max-w-65ch max-w-65rch mx-auto',
+
+      'bg-base': 'bg-white dark:bg-black',
+      'color-base': 'text-black dark:text-white',
+      'border-base': 'border-[#8884]',
+    },
+    [/^btn-(\w+)$/, ([_, color]) => `op50 px2.5 py1 transition-all duration-200 ease-out no-underline! hover:(op100 text-${color} bg-${color}/10) border border-base! rounded`],
+  ],
   presets: [
     presetWind4(),
     presetIcons({
