@@ -34,6 +34,6 @@ function task(state: WithViewTransitionState) {
 
 withViewTransition({
   initial: task,
-  afterSwap: task,
+  beforeSwap: task,
 })
 </script>
