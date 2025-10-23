@@ -23,25 +23,6 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
   const base = userConfig.base ?? '/'
   const baseFull = path.join('/', astroConfig.base, base)
 
-  const fKeysDefault = {
-    title: 'title',
-    subtitle: 'subtitle',
-    description: 'description',
-    created: 'created',
-    modified: 'modified',
-    author: 'author',
-    series: 'series',
-    tags: 'tags',
-    keywords: 'keywords',
-    draft: 'draft',
-    lang: 'lang',
-    toc: 'toc',
-  } satisfies ResolvedConfig['post']['frontmatterKeys']
-  const fKeys = defu(
-    userConfig.post?.frontmatterKeys,
-    fKeysDefault,
-  ) as ResolvedConfig['post']['frontmatterKeys']
-
   return {
     title: 'Friday',
     description: 'A content-focused Astro integration with tag and series support.',
@@ -92,7 +73,20 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           height: 630,
         }]
       },
-      frontmatterKeys: fKeys,
+      frontmatterKeys: {
+        title: 'title',
+        subtitle: 'subtitle',
+        description: 'description',
+        created: 'created',
+        modified: 'modified',
+        author: 'author',
+        series: 'series',
+        tags: 'tags',
+        keywords: 'keywords',
+        draft: 'draft',
+        lang: 'lang',
+        toc: 'toc',
+      } satisfies ResolvedConfig['post']['frontmatterKeys'],
       export: {
         md: {
           rehypeParse: {
