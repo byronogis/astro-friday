@@ -13,6 +13,13 @@ import {
 import { presetScrollbar } from 'unocss-preset-scrollbar'
 
 export default defineConfig({
+  outputToCssLayers: {
+    cssLayerName(layer) {
+      return layer === 'default'
+        ? 'uno-default'
+        : `uno`
+    },
+  },
   shortcuts: [
     {
       'hoverable-text': 'opacity-60 hover:opacity-100 transition-(opacity 200 ease)',

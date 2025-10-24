@@ -5,6 +5,8 @@ import type { AstroIntegration, InjectedRoute } from 'astro'
 import type { Config } from './config'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import postcssGlobalData from '@byronogis/postcss-global-data'
+import postcssPresetEnv from 'postcss-preset-env'
 import Inspect from 'vite-plugin-inspect'
 import { resolveConfig } from './config'
 import { mdx } from './integrations/mdx'
@@ -57,6 +59,14 @@ export function integration(userConfig: Config = {}): AstroIntegration {
               vitePluginAstroFridayComponents(resolvedConfig),
               Inspect(),
             ],
+            css: {
+              postcss: {
+                plugins: [
+                  postcssGlobalData(resolvedConfig.postcss.postcssGlobalData),
+                  postcssPresetEnv(resolvedConfig.postcss.postcssPresetEnv),
+                ],
+              },
+            },
           },
         })
 

@@ -15,7 +15,10 @@ import type { ArtConfig, NavItem, ProjectItem } from './types'
 import type { CollectionEntry } from './types/content'
 import type { Appearance } from './utils/appearance'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defu } from 'defu'
+
+const _dirname = path.dirname(fileURLToPath(import.meta.url))
 
 type GlobOptions = Parameters<typeof glob>[0]
 
@@ -126,6 +129,21 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
     },
     viewTransition: {
       enable: true,
+    },
+    postcss: {
+      postcssGlobalData: {
+        files: [
+          {
+            file: path.resolve(_dirname, './styles/global-data.css'),
+            remove: false,
+            position: 'prepend',
+          },
+        ],
+      },
+      postcssPresetEnv: {
+        stage: 2,
+        minimumVendorImplementations: 2,
+      },
     },
     integrations: {
       nprogress: {
@@ -483,6 +501,13 @@ export interface Config {
     enable?: boolean
   }
   /**
+   * Built-in PostCSS plugins configuration options
+   */
+  postcss?: {
+    postcssGlobalData?: import('@byronogis/postcss-global-data').pluginOptions
+    postcssPresetEnv?: import('postcss-preset-env').pluginOptions
+  }
+  /**
    * Integrations configuration, you can configure or disable built-in integrations here.
    */
   integrations?: {
@@ -572,6 +597,9 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'components.NavbarBrand'
   | 'viewTransition'
   | 'viewTransition.enable'
+  | 'postcss'
+  | 'postcss.postcssGlobalData'
+  | 'postcss.postcssPresetEnv'
   | 'integrations'
   | 'integrations.nprogress'
   | 'integrations.sitemap'

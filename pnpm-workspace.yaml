@@ -7,12 +7,14 @@ catalogs:
     astro: ^5.14.8
   deps:
     '@astrojs/mdx': ^4.3.7
+    '@byronogis/postcss-global-data': ^1.0.1
     astro-color-scheme: ^1.1.5
     astro-integration-kit: ^0.19.1
     c12: ^3.3.1
     dayjs: ^1.11.18
     defu: ^6.1.4
     jiti: ^2.6.1
+    postcss-preset-env: ^10.4.0
     type-fest: ^5.1.0
     typescript: ^5.9.3
     unocss: ^66.5.4
