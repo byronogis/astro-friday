@@ -1,0 +1,13 @@
+@import "./shiki/line-numbers.css";
+
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light);
+  background-color: #fafafa;
+}
+
+:root.dark .astro-code,
+:root.dark .astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}

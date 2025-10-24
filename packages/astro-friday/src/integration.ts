@@ -68,6 +68,17 @@ export function integration(userConfig: Config = {}): AstroIntegration {
               },
             },
           },
+          markdown: {
+            shikiConfig: {
+              defaultColor: false,
+              themes: {
+                light: 'vitesse-light',
+                dark: 'vitesse-dark',
+                // User custom themes has higher priority
+                ...astroConfig.markdown?.shikiConfig?.themes,
+              },
+            },
+          },
         })
 
         const postPath = {
