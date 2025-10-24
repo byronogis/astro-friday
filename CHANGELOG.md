@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.0.0-beta.18
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.17...v1.0.0-beta.18)
+
+### 🚀 Enhancements
+
+- Use css cascade layer to control style conveniently ([484964c](https://github.com/byronogis/astro-friday/commit/484964c))
+- Add line numbers for code block ([5e49a10](https://github.com/byronogis/astro-friday/commit/5e49a10))
+- Code block highlight,diff,focus,indent by shiki transformers ([c440102](https://github.com/byronogis/astro-friday/commit/c440102))
+- Code block copy button and language text display ([ac8bde0](https://github.com/byronogis/astro-friday/commit/ac8bde0))
+
+### 🏡 Chore
+
+- Move code ([943dfa9](https://github.com/byronogis/astro-friday/commit/943dfa9))
+- Update lockfile ([9b2b811](https://github.com/byronogis/astro-friday/commit/9b2b811))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.17
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.16...v1.0.0-beta.17)
