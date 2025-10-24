@@ -89,7 +89,7 @@ More settings can be found in [here](./configuration).
 - [x] frontmatter keys mapping
 - [ ] auto update last modified time
 - [ ] loader and schema customization
-- [ ] code block optimization (line numbers, copy button, etc.)
+- [x] code block optimization (line numbers, copy button, etc.)
 - [x] mdx support
 - [x] download as markdown (maybe useful for mdx and also md which processed)
 - [ ] multi-language version support

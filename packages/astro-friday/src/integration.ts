@@ -29,6 +29,7 @@ import { vitePluginAstroFridayComponents } from './plugins/components'
 import { vitePluginAstroFridayConfig } from './plugins/config'
 import { vitePluginAstroFridayUnoCSSExtract } from './plugins/css'
 import { vitePluginAstroFridayImports } from './plugins/imports'
+import { transformerWrapper } from './plugins/shiki'
 
 const _dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -104,6 +105,7 @@ export function integration(userConfig: Config = {}): AstroIntegration {
                     transformerRenderIndentGuides(),
                     transformerMetaHighlight(),
                     transformerMetaWordHighlight(),
+                    transformerWrapper(),
                   ]
 
                   return internalTransformers.filter(i => !existTransformerNames.includes(i.name))
