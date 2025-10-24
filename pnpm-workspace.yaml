@@ -44,6 +44,8 @@ catalogs:
     '@astrojs/sitemap': ^3.6.0
     '@vercel/og': ^0.8.5
     astro-seo: ^0.8.4
+  shiki:
+    '@shikijs/transformers': ^3.13.0
   types:
     '@types/nprogress': ^0.2.3
   unified:

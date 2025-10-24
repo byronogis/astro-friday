@@ -6,6 +6,16 @@ import type { Config } from './config'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import postcssGlobalData from '@byronogis/postcss-global-data'
+import {
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationFocus,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerRenderIndentGuides,
+} from '@shikijs/transformers'
 import postcssPresetEnv from 'postcss-preset-env'
 import Inspect from 'vite-plugin-inspect'
 import { resolveConfig } from './config'
@@ -77,6 +87,28 @@ export function integration(userConfig: Config = {}): AstroIntegration {
                 // User custom themes has higher priority
                 ...astroConfig.markdown?.shikiConfig?.themes,
               },
+              transformers: [
+                /**
+                 * There are the transformers that friday internal using.
+                 *
+                 * We only add them when the user has not configured themself.
+                 */
+                (() => {
+                  const existTransformerNames = astroConfig.markdown.shikiConfig.transformers.map(i => i.name)
+                  const internalTransformers = [
+                    transformerNotationDiff(),
+                    transformerNotationHighlight(),
+                    transformerNotationWordHighlight(),
+                    transformerNotationFocus(),
+                    transformerNotationErrorLevel(),
+                    transformerRenderIndentGuides(),
+                    transformerMetaHighlight(),
+                    transformerMetaWordHighlight(),
+                  ]
+
+                  return internalTransformers.filter(i => !existTransformerNames.includes(i.name))
+                })(),
+              ].flat(),
             },
           },
         })

@@ -1,0 +1,84 @@
+---
+title: Shiki Code Block
+
+---
+
+Using Shiki Transformers to enhance code blocks with diff, highlight, and indent features, **with custom CSS rules** due to transformers only applies classes and does not come with styles.
+
+See [Shiki Transformers](https://shiki.style/packages/transformers) for more details.
+
+## diff
+
+```ts
+console.log('hewwo') // [!code --]
+console.log('hello') // [!code ++]
+console.log('goodbye')
+```
+
+## highlight
+
+```ts
+console.log('Not highlighted')
+console.log('Highlighted') // [!code highlight]
+console.log('Not highlighted')
+```
+
+```ts
+// [!code highlight:3]
+console.log('Highlighted')
+console.log('Highlighted')
+console.log('Not highlighted')
+```
+
+```ts
+console.log('Not highlighted')
+// [!code highlight:1]
+console.log('Highlighted')
+console.log('Not highlighted')
+```
+
+```ts
+// [!code word:Hello]
+const message = 'Hello World'
+console.log(message) // prints Hello World
+```
+
+```ts
+console.log('No errors or warnings')
+console.error('Error') // [!code error]
+console.warn('Warning') // [!code warning]
+```
+
+```js {1,3-4}
+console.log('1')
+console.log('2')
+console.log('3')
+console.log('4')
+```
+
+```js /Hello/
+const msg = 'Hello World'
+console.log(msg)
+console.log(msg) // prints Hello World
+```
+
+## focus
+
+```ts
+console.log('Not focused');
+console.log('Focused') // [!code focus]
+console.log('Not focused');
+```
+
+## indent
+
+```js
+function func() {
+  console.log(1);
+
+  for (const i of []) {
+    console.log(2);
+  }
+}
+
+```

@@ -1,0 +1,130 @@
+/*
+  Adapted from:
+  [Shiki repo](https://github.com/shikijs/shiki/blob/f4d3fe59f333331ed36b97fdfae7141e9fd9b02a/docs/.vitepress/theme/transformers.css)
+  [Vitepress repo](https://github.com/vuejs/vitepress/blob/78790025ac168e6858fc5204cddfe03a98b1573c/src/client/theme-default/styles/components/vp-doc.css)
+ */
+
+
+/**
+ * transformerNotationDiff
+ * -------------------------------------------------------------------------- */
+.astro-code .diff {
+  position: relative;
+  z-index: 1;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  width: calc(100% + 2 * 1rem);
+  display: inline-block;
+
+  &::after {
+    position: absolute;
+    z-index: 1;
+    left: 0.5rem;
+  }
+
+  &.remove {
+    background-color: var(--vp-code-line-diff-remove-color);
+    opacity: 0.7;
+
+    &::after {
+      content: '-';
+      color: var(--vp-code-line-diff-remove-symbol-color);
+    }
+  }
+
+  &.add {
+    background-color: var(--vp-code-line-diff-add-color);
+
+    &::after {
+      content: '+';
+      color: var(--vp-code-line-diff-add-symbol-color);
+    }
+  }
+
+  span {
+    background-color: inherit;
+  }
+}
+
+/**
+ * transformerNotationHighlight
+ * transformerNotationErrorLevel
+ * transformerMetaHighlight
+ * -------------------------------------------------------------------------- */
+.astro-code .highlighted {
+  position: relative;
+  z-index: 1;
+  background-color: var(--vp-code-line-highlight-color);
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  width: calc(100% + 2 * 1rem);
+  display: inline-block;
+
+  span {
+    background-color: inherit;
+  }
+
+  &.error {
+    background-color: var(--vp-code-line-error-color);
+  }
+
+  &.warning {
+    background-color: var(--vp-code-line-warning-color);
+  }
+}
+
+/**
+ * transformerNotationWordHighlight
+ * transformerMetaWordHighlight
+ * -------------------------------------------------------------------------- */
+.astro-code .highlighted-word {
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  padding: 1px 3px;
+  margin: -1px -3px;
+  border-radius: 4px;
+}
+
+
+/**
+ * transformerNotationFocus
+ * -------------------------------------------------------------------------- */
+.astro-code.has-focused {
+  .line:not(.focused) {
+    filter: blur(0.095rem);
+    opacity: 0.7;
+    transition:
+      filter 0.35s,
+      opacity 0.35s;
+  }
+
+  &:hover .line:not(.focused) {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+
+/**
+ * transformerRenderIndentGuides
+ * -------------------------------------------------------------------------- */
+.astro-code .indent {
+  display: inline-block;
+  position: relative;
+  left: var(--indent-offset);
+  text-indent: 0;
+
+  &:empty {
+    height: 1lh;
+    vertical-align: bottom;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    opacity: 0.15;
+    width: 1px;
+    height: 100%;
+    background-color: currentColor;
+  }
+}

@@ -1,2 +1,3 @@
-@import "./main.css" layer(astro-friday);
-@import "./shiki.css" layer(astro-friday);
+@import "./vp-vars.css" layer(astro-friday.vp-vars);
+@import "./main.css" layer(astro-friday.main);
+@import "./shiki.css" layer(astro-friday.shiki);

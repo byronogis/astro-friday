@@ -1,13 +1,22 @@
 @import "./shiki/line-numbers.css";
+@import "./shiki/transformers.css";
 
-.astro-code,
-.astro-code span {
-  color: var(--shiki-light);
-  background-color: #fafafa;
-}
+@layer basic {
+  .astro-code {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+  }
 
-:root.dark .astro-code,
-:root.dark .astro-code span {
-  color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-light);
+    background-color: #fafafa;
+  }
+
+  .dark .astro-code,
+  .dark .astro-code span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
 }

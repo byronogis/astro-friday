@@ -1,1 +1,8 @@
-@layer uno, astro, astro-friday, uno-default;
+@layer
+  uno,
+  astro,
+  astro-friday.vp-vars,
+  astro-friday.main,
+  astro-friday.shiki.basic,
+  astro-friday.shiki,
+  uno-default;
