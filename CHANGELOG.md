@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.0.0-beta.19
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.18...v1.0.0-beta.19)
+
+### 🚀 Enhancements
+
+- Collection entry processor ([689c488](https://github.com/byronogis/astro-friday/commit/689c488))
+
+### 🏡 Chore
+
+- Change code block copied icon for better feedback ([15160f2](https://github.com/byronogis/astro-friday/commit/15160f2))
+- Move CodeBlockWrapper to head block ([a7d29c9](https://github.com/byronogis/astro-friday/commit/a7d29c9))
+- Remove unneed 'as' identifiers ([b0b51b8](https://github.com/byronogis/astro-friday/commit/b0b51b8))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.18
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.17...v1.0.0-beta.18)
