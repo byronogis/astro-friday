@@ -55,15 +55,15 @@ export function getPostList(
 
   return Promise.all(tasks)
     .then(lists => lists.flat())
-    // Process each entry with the entryProcessor if defined
+    // Process each entry with the processors if defined
     .then(async (list) => {
-      const entryProcessors = config.post.entryProcessors
-      const entryProcessorsArraying = entryProcessors.map(i => Array.isArray(i) ? i : [i])
+      const processors = config.post.processors
+      const processorsArraying = processors.map(i => Array.isArray(i) ? i : [i])
 
       const limit = pLimit(10)
 
       await Promise.all(list.map(entry => limit(async () => {
-        for await (const [processor, ...parameters] of entryProcessorsArraying) {
+        for await (const [processor, ...parameters] of processorsArraying) {
           await processor(...parameters)(entry, config)
         }
       })))

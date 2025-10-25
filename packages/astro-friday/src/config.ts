@@ -98,7 +98,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           },
         },
       },
-      entryProcessors: [],
+      processors: [],
     },
     collections: {},
     navigations: {
@@ -400,7 +400,7 @@ export interface Config {
      * Like updating the `modified` frontmatter field automatically based on the file's last modified time.
      *
      */
-    entryProcessors?: Processors
+    processors?: Processors
   }
   /**
    * Define content collections
@@ -631,7 +631,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.og'
   | 'post.export'
   | 'post.export.md'
-  | 'post.entryProcessors'
+  | 'post.processors'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`

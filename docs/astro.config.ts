@@ -15,7 +15,7 @@ export default defineConfig({
       },
       post: {
         pathStyle: 'id',
-        entryProcessors: [
+        processors: [
           [processorUpdateModifiedTime, { mode: 'git' }],
         ],
       },
