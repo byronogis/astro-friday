@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.0.0-beta.20
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.19...v1.0.0-beta.20)
+
+### 🚀 Enhancements
+
+- `advanced.functionCodeReplace` to modified function code while using funciton type values of config ([9d2419c](https://github.com/byronogis/astro-friday/commit/9d2419c))
+- **processor:** Add `override` option for processorUpdateModifiedTime to decide whether to override thee exist value ([e587b3b](https://github.com/byronogis/astro-friday/commit/e587b3b))
+
+### 🏡 Chore
+
+- ⚠️  Rename `post.entryProcessors` to `post.processors` ([aa1bd54](https://github.com/byronogis/astro-friday/commit/aa1bd54))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Rename `post.entryProcessors` to `post.processors` ([aa1bd54](https://github.com/byronogis/astro-friday/commit/aa1bd54))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.19
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.18...v1.0.0-beta.19)
