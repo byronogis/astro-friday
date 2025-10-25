@@ -57,7 +57,8 @@
     "remark-stringify": "catalog:unified",
     "simplex-noise": "catalog:frontend",
     "unocss": "catalog:deps",
-    "unocss-preset-scrollbar": "catalog:deps"
+    "unocss-preset-scrollbar": "catalog:deps",
+    "vite-plugin-inspect": "^11.3.3"
   },
   "dependencies": {
     "astro-color-scheme": "git+https://github.com/byronogis/astro-color-scheme.git#feat-support-astro-view-transition",
@@ -67,7 +68,6 @@
     "type-fest": "catalog:deps"
   },
   "devDependencies": {
-    "typescript": "catalog:deps",
-    "vite-plugin-inspect": "^11.3.3"
+    "typescript": "catalog:deps"
   }
 }
