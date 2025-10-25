@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.0.0-beta.21
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.20...v1.0.0-beta.21)
+
+### 🩹 Fixes
+
+- Deps ([3e230fe](https://github.com/byronogis/astro-friday/commit/3e230fe))
+
+### 🏡 Chore
+
+- Update ([630d809](https://github.com/byronogis/astro-friday/commit/630d809))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.20
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.19...v1.0.0-beta.20)
