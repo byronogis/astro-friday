@@ -20,6 +20,7 @@ const { seo } = Astro.props
 <html lang="en" class="scroll-smooth">
   <head>
     <HeadContent {seo} />
+    <CodeBlockWrapper />
 
     {config.viewTransition.enable && <ClientRouter />}
 
@@ -32,7 +33,6 @@ const { seo } = Astro.props
   <body class="text-gray-700 font-sans relative dark:text-gray-200">
     <slot />
     <Art />
-    <CodeBlockWrapper />
     { config.viewTransition.enable && config.integrations.nprogress ? <NProgress /> : null }
   </body>
 </html>

@@ -1,5 +1,15 @@
 import type { ShikiTransformer } from '@shikijs/types'
 
+/**
+ * A Shiki transformer that wraps code blocks in a div with additional elements.
+ *
+ * - Adds a copy button to copy the code to clipboard.
+ * - Displays the language of the code block.
+ *
+ * Using this transformer requires corresponding CSS and JavaScript to handle the copy functionality and styling.
+ *
+ * [CSS and JavaScript Example](https://github.com/byronogis/astro-friday/blob/main/packages/astro-friday/src/components/CodeBlockWrapper.astro)
+ */
 export function transformerWrapper(): ShikiTransformer {
   return {
     name: 'astro-friday-transformer-wrapper',
