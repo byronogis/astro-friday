@@ -177,6 +177,9 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       ].flat(),
     },
     projects: [],
+    advanced: {
+      functionCodeReplace: [],
+    },
   }
 }
 
@@ -569,6 +572,46 @@ export interface Config {
    * @default []
    */
   projects?: ProjectItem[]
+  /**
+   * Advanced configuration options for power using.
+   */
+  advanced?: {
+    /**
+     * Function code replacement configuration for advanced using.
+     *
+     * When passing functions as configuration values, you might want to replace
+     * certain code snippets.
+     *
+     * Like we can solve the `__vite_ssr_dynamic_import__ is not defined` issue
+     * by replacing `__vite_ssr_dynamic_import__("node:fs")` with
+     * `import("node:fs")` when building.
+     *
+     * @example
+     * ```ts
+     * advanced: {
+     *   functionCodeReplace: [
+     *     {
+     *       api: 'replaceAll',
+     *       parameters: ['__vite_ssr_dynamic_import__("node:', 'import("node:'],
+     *     },
+     *   ],
+     * }
+     * ```
+     */
+    functionCodeReplace?: {
+      /**
+       * The string method to replace function code snippets
+       *
+       * @default 'replaceAll'
+       */
+      api?: 'replace' | 'replaceAll'
+      /**
+       * Just allow string parameters due to serialization limitation, will
+       * pass to the string method after spreading.
+       */
+      parameters: [string, string]
+    }[]
+  }
 }
 
 export type ResolvedConfig = SetRequiredDeep<
@@ -616,6 +659,8 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'integrations.robotsTxt'
   | 'integrations.mdx'
   | 'projects'
+  | 'advanced'
+  | 'advanced.functionCodeReplace'
 > & {
   /**
    * The full base path, including Astro's base.

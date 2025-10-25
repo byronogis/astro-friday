@@ -43,7 +43,16 @@ export function vitePluginAstroFridayConfig(resolvedConfig: ResolvedConfig) {
 
       if (id === resolvedFunctionsModuleId) {
         const functionDeclarations = Array.from(functionMap.entries())
-          .map(([funcName, funcCode]) => `const ${funcName} = ${funcCode};`)
+          .map(([funcName, funcCode]) => {
+            const processedCode = resolvedConfig.advanced.functionCodeReplace.reduce((code, replaceRule) => {
+              const {
+                api = 'replaceAll',
+                parameters,
+              } = replaceRule
+              return code[api](...parameters)
+            }, funcCode)
+            return `const ${funcName} = ${processedCode};`
+          })
           .join('\n')
 
         const exportNames = Array.from(functionMap.keys()).join(', ')

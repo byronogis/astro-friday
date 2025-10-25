@@ -16,7 +16,7 @@ export default defineConfig({
       post: {
         pathStyle: 'id',
         entryProcessors: [
-          [processorUpdateModifiedTime, { mode: 'fs' }],
+          [processorUpdateModifiedTime, { mode: 'git' }],
         ],
       },
       collections: {
@@ -66,6 +66,15 @@ export default defineConfig({
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
       ],
+      advanced: {
+        functionCodeReplace: [
+          // processorUpdateModifiedTime compatibility
+          {
+            api: 'replaceAll',
+            parameters: ['__vite_ssr_dynamic_import__("node:', 'import("node:'],
+          },
+        ],
+      },
     }),
   ],
   server: {

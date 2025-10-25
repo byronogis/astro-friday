@@ -51,6 +51,7 @@ export function integration(userConfig: Config = {}): AstroIntegration {
           addWatchFile(path.resolve(_dirname, './config.ts'))
           addWatchFile(path.resolve(_dirname, './integration.ts'))
           addWatchFile(path.resolve(_dirname, './integrations/unocss/uno.config.ts'))
+          addWatchFile(path.resolve(_dirname, './plugins/config.ts'))
         }
 
         updateConfig({
