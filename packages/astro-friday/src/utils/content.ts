@@ -2,6 +2,7 @@ import type { SetRequired } from 'type-fest'
 import type { CollectionEntry } from '../types/content'
 import { getCollection } from 'astro:content'
 import dayjs from 'dayjs'
+import pLimit from 'p-limit'
 import config from 'virtual:astro-friday-config'
 
 /**
@@ -54,6 +55,21 @@ export function getPostList(
 
   return Promise.all(tasks)
     .then(lists => lists.flat())
+    // Process each entry with the entryProcessor if defined
+    .then(async (list) => {
+      const entryProcessors = config.post.entryProcessors
+      const entryProcessorsArraying = entryProcessors.map(i => Array.isArray(i) ? i : [i])
+
+      const limit = pLimit(10)
+
+      await Promise.all(list.map(entry => limit(async () => {
+        for await (const [processor, ...parameters] of entryProcessorsArraying) {
+          await processor(...parameters)(entry, config)
+        }
+      })))
+
+      return list
+    })
     .then(list => list.sort((a, b) => {
       if (sort === 'created-asc') {
         return dayjs(a.data[fKeys.created]).isAfter(dayjs(b.data[fKeys.created])) ? 1 : -1

@@ -24,6 +24,7 @@
     "./layouts/*": "./src/layouts/*",
     "./components/*": "./src/components/*",
     "./integrations/unocss": "./src/integrations/unocss/index.ts",
+    "./processors": "./src/utils/processor/index.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -47,6 +48,7 @@
     "astro": "catalog:build",
     "astro-seo": "catalog:seo",
     "dayjs": "catalog:deps",
+    "p-limit": "catalog:deps",
     "pixi.js": "catalog:frontend",
     "postcss-preset-env": "catalog:deps",
     "rehype-parse": "catalog:unified",

@@ -1,4 +1,5 @@
 import Friday from 'astro-friday'
+import { processorUpdateModifiedTime } from 'astro-friday/processors'
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
@@ -14,6 +15,9 @@ export default defineConfig({
       },
       post: {
         pathStyle: 'id',
+        entryProcessors: [
+          [processorUpdateModifiedTime, { mode: 'fs' }],
+        ],
       },
       collections: {
         guide: {

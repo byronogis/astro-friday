@@ -25,6 +25,9 @@ catalogs:
     jiti:
       specifier: ^2.6.1
       version: 2.6.1
+    p-limit:
+      specifier: ^7.2.0
+      version: 7.2.0
     postcss-preset-env:
       specifier: ^10.4.0
       version: 10.4.0
@@ -208,6 +211,9 @@ importers:
       defu:
         specifier: catalog:deps
         version: 6.1.4
+      p-limit:
+        specifier: catalog:deps
+        version: 7.2.0
       pixi.js:
         specifier: catalog:frontend
         version: 8.14.0
@@ -3332,6 +3338,10 @@ packages:
   p-limit@6.2.0:
     resolution: {integrity: sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==}
     engines: {node: '>=18'}
+
+  p-limit@7.2.0:
+    resolution: {integrity: sha512-ATHLtwoTNDloHRFFxFJdHnG6n2WUeFjaR8XQMFdKIv0xkXjrER8/iG9iu265jOM95zXHAfv9oTkqhrfbIzosrQ==}
+    engines: {node: '>=20'}
 
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
@@ -8369,6 +8379,10 @@ snapshots:
     optional: true
 
   p-limit@6.2.0:
+    dependencies:
+      yocto-queue: 1.2.1
+
+  p-limit@7.2.0:
     dependencies:
       yocto-queue: 1.2.1
 

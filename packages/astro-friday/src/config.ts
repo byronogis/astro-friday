@@ -14,6 +14,7 @@ import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
 import type { CollectionEntry } from './types/content'
 import type { Appearance } from './utils/appearance'
+import type { Processors } from './utils/processor'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defu } from 'defu'
@@ -97,6 +98,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           },
         },
       },
+      entryProcessors: [],
     },
     collections: {},
     navigations: {
@@ -389,6 +391,13 @@ export interface Config {
         remarkStringify?: remarkStringifyOptions
       } | false
     }
+    /**
+     * An optional processor function to modify each collection entry after it's loaded by `getCollection`.
+     *
+     * Like updating the `modified` frontmatter field automatically based on the file's last modified time.
+     *
+     */
+    entryProcessors?: Processors
   }
   /**
    * Define content collections
@@ -579,6 +588,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.og'
   | 'post.export'
   | 'post.export.md'
+  | 'post.entryProcessors'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`
