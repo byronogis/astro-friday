@@ -20,9 +20,17 @@ import type { Processor } from './index'
 export const processorUpdateModifiedTime: Processor<[RemarkModifiedTimeOptions]> = function (options: RemarkModifiedTimeOptions = {}) {
   const {
     mode = 'git',
+    override = false,
   } = options
 
   return async function (entry, config) {
+    const fKeys = config.post.frontmatterKeys
+
+    const isModifiedExist = Boolean(entry.data[fKeys.modified])
+    if (!override && isModifiedExist) {
+      return
+    }
+
     const { execSync } = await import('node:child_process')
     const { statSync } = await import('node:fs')
 
@@ -30,8 +38,6 @@ export const processorUpdateModifiedTime: Processor<[RemarkModifiedTimeOptions]>
     if (!filepath) {
       return
     }
-
-    const fKeys = config.post.frontmatterKeys
 
     const result = {
       git: () => execSync(`git log -1 --pretty="format:%cI" "${filepath}"`).toString(),
@@ -52,4 +58,10 @@ export interface RemarkModifiedTimeOptions {
    * @default 'git'
    */
   mode?: 'git' | 'fs'
+  /**
+   * Override existing modified time in frontmatter.
+   *
+   * @default false
+   */
+  override?: boolean
 }
