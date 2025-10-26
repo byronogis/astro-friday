@@ -56,6 +56,7 @@
     "remark-gfm": "catalog:unified",
     "remark-stringify": "catalog:unified",
     "simplex-noise": "catalog:frontend",
+    "unist-util-visit": "catalog:unified",
     "unocss": "catalog:deps",
     "unocss-preset-scrollbar": "catalog:deps",
     "vite-plugin-inspect": "^11.3.3"

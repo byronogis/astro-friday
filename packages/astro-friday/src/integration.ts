@@ -29,6 +29,7 @@ import { vitePluginAstroFridayComponents } from './plugins/components'
 import { vitePluginAstroFridayConfig } from './plugins/config'
 import { vitePluginAstroFridayUnoCSSExtract } from './plugins/css'
 import { vitePluginAstroFridayImports } from './plugins/imports'
+import { remarkAstroCollectionLink } from './plugins/remark'
 import { transformerWrapper } from './plugins/shiki'
 
 const _dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -113,6 +114,24 @@ export function integration(userConfig: Config = {}): AstroIntegration {
                 })(),
               ].flat(),
             },
+            remarkPlugins: [
+              [remarkAstroCollectionLink, {
+                collections: Object.entries(resolvedConfig.collections).map(([key, value]) => {
+                  const globBase = value.glob.base
+                  if (!globBase) {
+                    return null
+                  }
+
+                  const base = resolvedConfig.post.pathStyle === 'collection/id'
+                    ? path.join(resolvedConfig.baseFull, 'post', key)
+                    : path.join(resolvedConfig.baseFull, 'post')
+
+                  const dir = typeof globBase === 'string' ? globBase : globBase.toString()
+
+                  return [base, dir]
+                }).filter(Boolean),
+              }],
+            ],
           },
         })
 
