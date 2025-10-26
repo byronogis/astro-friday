@@ -24,13 +24,13 @@ const _dirname = path.dirname(fileURLToPath(import.meta.url))
 type GlobOptions = Parameters<typeof glob>[0]
 
 export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): Config {
-  const base = userConfig.base ?? '/'
-  const baseFull = path.join('/', astroConfig.base, base)
+  const prefix = userConfig.prefix ?? '/'
+  const baseFull = path.join('/', astroConfig.base, prefix)
 
   return {
     title: 'Friday',
     description: 'A content-focused Astro integration with tag and series support.',
-    base,
+    prefix,
     author: {
       name: 'Anonymous',
     },
@@ -110,11 +110,11 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
     },
     pages: {
       404: {
-        pattern: path.join(base, `404`),
+        pattern: path.join(prefix, `404`),
         entrypoint: 'astro-friday/routes/404.astro',
       },
       home: {
-        pattern: path.join(base, ``),
+        pattern: path.join(prefix, ``),
         entrypoint: `astro-friday/routes/collection/index.astro`,
       },
     },
@@ -184,8 +184,8 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
 }
 
 export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): ResolvedConfig {
-  const base = userConfig.base ?? '/'
-  const baseFull = path.join('/', astroConfig.base, base)
+  const prefix = userConfig.prefix ?? '/'
+  const baseFull = path.join('/', astroConfig.base, prefix)
 
   const defaultConfig = getDefaultConfig(userConfig, astroConfig)
 
@@ -194,7 +194,7 @@ export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): Res
 
   const mergedConfig = defu(
     {
-      base,
+      prefix,
       baseFull,
     },
     userConfig,
@@ -247,7 +247,7 @@ export interface Config {
    *
    * @example '/content' will make routes like `/content/post`
    */
-  base?: string
+  prefix?: string
   /**
    * The author information, used in the footer and SEO metadata.
    */
@@ -617,7 +617,7 @@ export interface Config {
 export type ResolvedConfig = SetRequiredDeep<
   OmitDeep<Config, 'post.frontmatterKeys'>,
   | 'title'
-  | 'base'
+  | 'prefix'
   | 'author'
   | 'author.name'
   | 'copyright'
@@ -663,7 +663,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'advanced.functionCodeReplace'
 > & {
   /**
-   * The full base path, including Astro's base.
+   * The full base path, is Astro's base with the config prefix joined.
    */
   baseFull: string
   post: {

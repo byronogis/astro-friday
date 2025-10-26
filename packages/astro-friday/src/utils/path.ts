@@ -21,8 +21,7 @@ export function getPath<T extends PathType>(
 
   const _host = host === true ? window.location.origin : host
 
-  const base = config.baseFull
-  const prefix = ({
+  const subpath = ({
     home: '',
     collection: 'collection',
     post: 'post',
@@ -31,6 +30,6 @@ export function getPath<T extends PathType>(
     og: 'og',
   } satisfies Record<PathType, string>)[type]
 
-  const _path = path.join('/', base, prefix, ...params)
+  const _path = path.join('/', config.baseFull, subpath, ...params)
   return _host ? new URL(_path, _host).href : _path
 }

@@ -123,45 +123,45 @@ export function integration(userConfig: Config = {}): AstroIntegration {
 
         const routes: InjectedRoute[] = [
           {
-            pattern: path.join(resolvedConfig.base, `post`),
+            pattern: path.join(resolvedConfig.prefix, `post`),
             entrypoint: `astro-friday/routes/collection/index.astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `post`, postPath),
+            pattern: path.join(resolvedConfig.prefix, `post`, postPath),
             entrypoint: `astro-friday/routes/post/[...slug].astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `tag`),
+            pattern: path.join(resolvedConfig.prefix, `tag`),
             entrypoint: `astro-friday/routes/tag/index.astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `tag/[...slug]`),
+            pattern: path.join(resolvedConfig.prefix, `tag/[...slug]`),
             entrypoint: `astro-friday/routes/tag/[...slug].astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `series`),
+            pattern: path.join(resolvedConfig.prefix, `series`),
             entrypoint: `astro-friday/routes/series/index.astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `series/[...slug]`),
+            pattern: path.join(resolvedConfig.prefix, `series/[...slug]`),
             entrypoint: `astro-friday/routes/series/[...slug].astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `og`, postPath),
+            pattern: path.join(resolvedConfig.prefix, `og`, postPath),
             entrypoint: `astro-friday/routes/og/[...slug].ts`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `collection`),
+            pattern: path.join(resolvedConfig.prefix, `collection`),
             entrypoint: `astro-friday/routes/collection/index.astro`,
           },
           {
-            pattern: path.join(resolvedConfig.base, `collection/[...slug]`),
+            pattern: path.join(resolvedConfig.prefix, `collection/[...slug]`),
             entrypoint: `astro-friday/routes/collection/[...slug].astro`,
           },
         ]
 
         resolvedConfig.projects?.length && routes.push({
-          pattern: path.join(resolvedConfig.base, `project`),
+          pattern: path.join(resolvedConfig.prefix, `project`),
           entrypoint: `astro-friday/routes/project/index.astro`,
         })
 

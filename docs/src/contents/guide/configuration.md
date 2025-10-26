@@ -42,7 +42,7 @@ export default defineConfig({
 
 - **`title`** (string): Website title, defaults to 'Friday'
 - **`description`** (string): Website description, defaults to 'A content-focused Astro integration with tag and series support.'
-- **`base`** (string): Base path, defaults to '/', respects the `base` of Astro further, it's just a sub-path prefix for all built-in routes, e.g. if set to `/friday-base`, and set `astro-base` to Astro.base, then the actual post list page will be `/astro-base/friday-base/post`
+- **`prefix`** (string): prefix path, defaults to '/', respects the `base` of Astro further, it's just a sub-path prefix for all built-in routes, e.g. if set to `/friday-base`, and set `astro-base` to Astro.base, then the actual post list page will be `/astro-base/friday-base/post`
 
 ### Author Information
 
@@ -179,7 +179,7 @@ pages: {
 }
 ```
 
-See [Custom Homepage](./custom-homepage.md) for more details on creating a custom homepage.
+See [Custom Homepage](./custom-homepage) for more details on creating a custom homepage.
 
 ### SEO Configuration
 
