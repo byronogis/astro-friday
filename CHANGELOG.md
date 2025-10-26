@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.0.0-beta.22
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.21...v1.0.0-beta.22)
+
+### 🚀 Enhancements
+
+- Auto correct content link between each other ([1089bf2](https://github.com/byronogis/astro-friday/commit/1089bf2))
+
+### 🏡 Chore
+
+- ⚠️  Rename config `base` to `prefix` for reduce confuse with astro `base` ([973224d](https://github.com/byronogis/astro-friday/commit/973224d))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Rename config `base` to `prefix` for reduce confuse with astro `base` ([973224d](https://github.com/byronogis/astro-friday/commit/973224d))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.21
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.20...v1.0.0-beta.21)
