@@ -4,9 +4,9 @@ packages:
 
 catalogs:
   build:
-    astro: ^5.14.8
+    astro: ^5.15.3
   deps:
-    '@astrojs/mdx': ^4.3.7
+    '@astrojs/mdx': ^4.3.9
     '@byronogis/postcss-global-data': ^1.0.1
     astro-color-scheme: ^1.1.5
     astro-integration-kit: ^0.19.1
@@ -26,16 +26,16 @@ catalogs:
     pixi.js: ^8.14.0
     simplex-noise: ^4.0.3
   icons:
-    '@iconify-json/logos': ^1.2.9
-    '@iconify-json/lucide': ^1.2.70
+    '@iconify-json/logos': ^1.2.10
+    '@iconify-json/lucide': ^1.2.71
     '@iconify-json/uil': ^1.2.3
   lint:
-    '@antfu/eslint-config': ^6.0.0
+    '@antfu/eslint-config': ^6.2.0
     '@unocss/eslint-plugin': ^66.5.4
     eslint: ^9.38.0
-    eslint-plugin-astro: ^1.3.1
+    eslint-plugin-astro: ^1.4.0
     husky: ^9.1.7
-    lint-staged: ^16.2.5
+    lint-staged: ^16.2.6
     prettier-plugin-astro: ^0.14.1
     simple-git-hooks: ^2.13.1
   release:
@@ -46,7 +46,7 @@ catalogs:
     '@vercel/og': ^0.8.5
     astro-seo: ^0.8.4
   shiki:
-    '@shikijs/transformers': ^3.13.0
+    '@shikijs/transformers': ^3.14.0
   types:
     '@types/nprogress': ^0.2.3
   unified:
