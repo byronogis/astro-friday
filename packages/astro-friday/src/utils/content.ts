@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content'
 import dayjs from 'dayjs'
 import pLimit from 'p-limit'
 import config from 'virtual:astro-friday-config'
+import * as processors from '../processors'
 
 /**
  * Get a list or map of content entries from all collections which are defined in the config.
@@ -57,14 +58,14 @@ export function getPostList(
     .then(lists => lists.flat())
     // Process each entry with the processors if defined
     .then(async (list) => {
-      const processors = config.post.processors
-      const processorsArraying = processors.map(i => Array.isArray(i) ? i : [i])
-
       const limit = pLimit(10)
 
       await Promise.all(list.map(entry => limit(async () => {
-        for await (const [processor, ...parameters] of processorsArraying) {
-          await processor(...parameters)(entry, config)
+        const names = Object.keys(processors) as (keyof typeof processors)[]
+        for (const name of names) {
+          const processor = processors[name]
+          const processorOptions = config.processors?.[name] || {}
+          await processor(processorOptions)(entry, config)
         }
       })))
 

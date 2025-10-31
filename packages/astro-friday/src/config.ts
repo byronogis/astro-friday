@@ -11,10 +11,10 @@ import type { Options as remarkStringifyOptions } from 'remark-stringify'
 import type { OmitDeep, SetRequiredDeep } from 'type-fest'
 import type { FrontmatterKeysInternal, Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
+import type * as processors from './processors'
 import type { ArtConfig, NavItem, ProjectItem } from './types'
 import type { CollectionEntry } from './types/content'
 import type { Appearance } from './utils/appearance'
-import type { Processors } from './utils/processor'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defu } from 'defu'
@@ -98,8 +98,8 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           },
         },
       },
-      processors: [],
     },
+    processors: {},
     collections: {},
     navigations: {
       'post': { label: 'Post', link: path.join(baseFull, 'post'), icon: 'i-lucide:scroll-text', order: 100 },
@@ -394,13 +394,12 @@ export interface Config {
         remarkStringify?: remarkStringifyOptions
       } | false
     }
-    /**
-     * An optional processor function to modify each collection entry after it's loaded by `getCollection`.
-     *
-     * Like updating the `modified` frontmatter field automatically based on the file's last modified time.
-     *
-     */
-    processors?: Processors
+  }
+  /**
+   * Processors to process each content entry
+   */
+  processors?: {
+    [Name in keyof typeof processors]?: Parameters<typeof processors[Name]>[0]
   }
   /**
    * Define content collections
@@ -631,7 +630,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.og'
   | 'post.export'
   | 'post.export.md'
-  | 'post.processors'
+  | 'processors'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`

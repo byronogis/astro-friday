@@ -3,27 +3,19 @@ import type { Processor } from './index'
 /**
  * With this processor, you can automatically update the `modified` frontmatter
  * key of your markdown files to reflect their last modified time.
- *
- * NOTE:
- * Using this processor should with the below config of `advanced.functionCodeReplace`:
- * ```ts
- * advanced: {
- *   functionCodeReplace: [
- *     {
- *       api: 'replaceAll',
- *       arguments: ['__vite_ssr_dynamic_import__("node:', 'import("node:'],
- *     },
- *   ],
- * }
- * ```
  */
-export const processorUpdateModifiedTime: Processor<[RemarkModifiedTimeOptions]> = function (options: RemarkModifiedTimeOptions = {}) {
+export const processorUpdateModifiedTime: Processor<ProcessorUpdateModifiedTimeOptions> = function (options = {}) {
   const {
+    enabled = true,
     mode = 'git',
     override = false,
   } = options
 
   return async function (entry, config) {
+    if (!enabled) {
+      return
+    }
+
     const fKeys = config.post.frontmatterKeys
 
     const isModifiedExist = Boolean(entry.data[fKeys.modified])
@@ -48,7 +40,13 @@ export const processorUpdateModifiedTime: Processor<[RemarkModifiedTimeOptions]>
   }
 }
 
-export interface RemarkModifiedTimeOptions {
+export interface ProcessorUpdateModifiedTimeOptions {
+  /**
+   * Enable or disable this processor.
+   *
+   * @default true
+   */
+  enabled?: boolean
   /**
    * Mode to determine the last modified time.
    *

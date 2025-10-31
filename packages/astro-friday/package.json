@@ -24,7 +24,6 @@
     "./layouts/*": "./src/layouts/*",
     "./components/*": "./src/components/*",
     "./integrations/unocss": "./src/integrations/unocss/index.ts",
-    "./processors": "./src/utils/processor/index.ts",
     "./package.json": "./package.json"
   },
   "files": [

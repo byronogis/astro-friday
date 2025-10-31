@@ -1,5 +1,4 @@
 import Friday from 'astro-friday'
-import { processorUpdateModifiedTime } from 'astro-friday/processors'
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
@@ -15,9 +14,9 @@ export default defineConfig({
       },
       post: {
         pathStyle: 'id',
-        processors: [
-          [processorUpdateModifiedTime, { mode: 'git' }],
-        ],
+      },
+      processors: {
+        processorUpdateModifiedTime: { mode: 'git' },
       },
       collections: {
         guide: {
@@ -66,15 +65,6 @@ export default defineConfig({
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
       ],
-      advanced: {
-        functionCodeReplace: [
-          // processorUpdateModifiedTime compatibility
-          {
-            api: 'replaceAll',
-            parameters: ['__vite_ssr_dynamic_import__("node:', 'import("node:'],
-          },
-        ],
-      },
     }),
   ],
   server: {
