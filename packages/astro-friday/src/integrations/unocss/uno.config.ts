@@ -22,13 +22,14 @@ export default defineConfig({
   },
   shortcuts: [
     {
-      'hoverable-text': 'opacity-60 hover:opacity-100 transition-(opacity 200 ease)',
+      'hoverable-text': 'opacity-60 hover:opacity-100 transition-(opacity 200 ease-out)',
       'live-area': 'max-w-65ch max-w-65rch mx-auto',
 
       'bg-base': 'bg-white dark:bg-black',
       'color-base': 'text-black dark:text-white',
       'border-base': 'border-[#8884]',
     },
+    [/^tag-(\w+)$/, ([_, color]) => `text-xs text-${color} my-auto px-1 py-0.5 align-middle rounded bg-${color}/15`],
     [/^btn-(\w+)$/, ([_, color]) => `op50 px2.5 py1 transition-all duration-200 ease-out no-underline! hover:(op100 text-${color} bg-${color}/10) border border-base! rounded`],
   ],
   presets: [

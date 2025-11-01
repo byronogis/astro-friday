@@ -2,6 +2,7 @@
 import type { CollectionEntry } from '../types/content'
 import config from 'virtual:astro-friday-config'
 import { formatDate } from '../utils/date'
+import ArticleLangs from './ArticleLangs.astro'
 
 interface Props {
   entry: CollectionEntry
@@ -13,20 +14,19 @@ const fKeys = config.post.frontmatterKeys
 
 ---
 
-<div class="mx-auto prose dark:prose-invert">
+<div class="mx-auto mb-8 prose space-y-2.5! dark:prose-invert">
   {
     config.viewTransition.enable
       ? <h1 transition:name={`post:${entry.id}`}>{entry.data[fKeys.title]}</h1>
       : <h1>{entry.data[fKeys.title]}</h1>
   }
 
-  <p class="op-50 !-mt-6">
+  <p class="op-50">
     <span class="text-sm ws-nowrap">
       { formatDate(entry.data[fKeys.modified] || entry.data[fKeys.created], false) }
     </span>
-    <span
-      class="text-xs text-zinc:500 my-auto px-1 py-0.5 align-middle rounded bg-zinc:15 flex-none"
-    >{entry.collection}</span>
+
+    <span class="tag-zinc700">{entry.collection}</span>
   </p>
 
   {
@@ -36,8 +36,18 @@ const fKeys = config.post.frontmatterKeys
   }
 
   {
+    Object.keys(entry.data[fKeys.langs]).length > 0 && (
+      <div class="flex items-center">
+        <i class="i-lucide:languages mr-2 op-50"></i>
+        <ArticleLangs {entry} class="[&_a]:text-sm!" highlightCurrent />
+      </div>
+    )
+  }
+
+
+  {
     entry.data[fKeys.subtitle] && (
-      <p class="op-50 italic !-mt-6">{entry.data[fKeys.subtitle]}</p>
+      <p class="op-50 italic">{entry.data[fKeys.subtitle]}</p>
     )
   }
 

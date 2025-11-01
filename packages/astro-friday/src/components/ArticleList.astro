@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import config from 'virtual:astro-friday-config'
 import { formatDate } from '../utils/date'
 import { getPath } from '../utils/path'
+import ArticleLangs from './ArticleLangs.astro'
 
 interface Props {
   entryList: CollectionEntry[]
@@ -52,7 +53,23 @@ const groupedByYear = entryList.reduce((acc, entry) => {
               const fKeys = config.post.frontmatterKeys
 
               return (
-                <li class="mb-6 mt-2">
+                <li class="mb-6 mt-2 relative">
+                  <ArticleLangs
+                    {entry}
+                    class="absolute z-1 xl:(translate-x-[calc(-100%-1em)] left-0) lt-xl:(bottom-0 right-0)"
+                    availableCurrent
+                    hides={[
+                      config.post.lang.collapse
+                        ? Object.keys(entry.data[fKeys.langs]).length > 1
+                          ? []
+                          : [entry.data[fKeys.lang]]
+                        : entry.data[fKeys.lang] === config.post.lang.default
+                          ? Object.keys(entry.data[fKeys.langs])
+                          : Object.keys(entry.data[fKeys.langs]).filter(i => i !== entry.data[fKeys.lang]),
+                    ].flat()}
+                    max={3}
+                  />
+
                   <a
                     class="text-lg leading-1.2em hoverable-text flex flex-col gap-2 md:(flex-row flex-items-center)"
                     href={getPath(
@@ -74,7 +91,7 @@ const groupedByYear = entryList.reduce((acc, entry) => {
                       </span>
 
                       <span
-                        class="text-xs text-zinc:500 my-auto px-1 py-0.5 align-middle rounded bg-zinc:15 flex-none"
+                        class="tag-zinc500 flex-none"
                       >{entry.collection}</span>
                     </div>
                   </a>

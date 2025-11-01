@@ -5,6 +5,7 @@ tags: ["astro"]
 author: Byron
 series:
   - guide
+id: introduction
 ---
 
 # Astro Friday
@@ -92,7 +93,7 @@ More settings can be found in [here](./configuration).
 - [x] code block optimization (line numbers, copy button, etc.)
 - [x] mdx support
 - [x] download as markdown (maybe useful for mdx and also md which processed)
-- [ ] multi-language version support
+- [x] multi-language version of content support
 - [x] og image parameter customization
 - [ ] configuration doc generate automatically
 - [ ] assets management

@@ -77,7 +77,11 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           height: 630,
         }]
       },
+      lang: {
+        default: 'en',
+      },
       frontmatterKeys: {
+        id: 'id',
         title: 'title',
         subtitle: 'subtitle',
         description: 'description',
@@ -89,6 +93,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         keywords: 'keywords',
         draft: 'draft',
         lang: 'lang',
+        langs: 'langs',
         permalink: 'permalink',
         toc: 'toc',
       } satisfies ResolvedConfig['post']['frontmatterKeys'],
@@ -343,28 +348,46 @@ export interface Config {
      */
     og?: (entry: CollectionEntry, config: ResolvedConfig) => ConstructorParameters<typeof import('@vercel/og').ImageResponse>
     /**
+     * Post can be written in multiple languages, and to switch between these
+     * languages in the post page.
+     */
+    lang?: {
+      /**
+       * The default language code for posts without a specified language.
+       * @default 'en'
+       */
+      default?: string
+      /**
+       * If set to true, just display a default language version post in post list.
+       */
+      collapse?: boolean
+      /**
+       * If `collapse` is true, and the post has no version for the default language,
+       * you can specify fallback language codes here to find a suitable version.
+       */
+      collapseFallbackLangCodes?: string[]
+      /**
+       * You can also define more information for each language here.
+       */
+      langs?: {
+        [LangCode in string]: {
+          code?: LangCode
+          /**
+           * The language label displayed in the language switch area.
+           *
+           * If not provided, the language code will be used as the label.
+           */
+          label?: string
+        }
+      }
+    }
+    /**
      * frontmatter keys mapping to Schema fields
      *
      * Like if you want to use `date` instead of `created` in frontmatter,
      * you can set `{ created = 'date' }` here.
      *
-     * @default
-     * ```js
-     * {
-     *   title: 'title',
-     *   subtitle: 'subtitle',
-     *   description: 'description',
-     *   created: 'created',
-     *   modified: 'modified',
-     *   author: 'author',
-     *   series: 'series',
-     *   tags: 'tags',
-     *   keywords: 'keywords',
-     *   draft: 'draft',
-     *   lang: 'lang',
-     *   permalink: 'permalink',
-     *   toc: 'toc',
-     * }
+     * The defaults is same as the field names.
      * ```
      */
     frontmatterKeys?: Partial<Record<FrontmatterKeysInternal, string>>
@@ -636,6 +659,8 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.toc.enable'
   | 'post.toc.range'
   | 'post.og'
+  | 'post.lang'
+  | 'post.lang.default'
   | 'post.export'
   | 'post.export.md'
   | 'processors'

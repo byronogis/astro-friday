@@ -14,6 +14,13 @@ export default defineConfig({
       },
       post: {
         pathStyle: 'id',
+        lang: {
+          collapse: true,
+          langs: {
+            zh: { label: '中文' },
+            en: { label: 'English' },
+          },
+        },
       },
       processors: {
         processorUpdateModifiedTime: { mode: 'git' },

@@ -1,0 +1,89 @@
+---
+import type { CollectionEntry } from '../types/content'
+import config from 'virtual:astro-friday-config'
+import { getPath } from '../utils/path'
+
+interface Props {
+  entry: CollectionEntry
+  class?: string
+  availableCurrent?: boolean
+  highlightCurrent?: boolean
+  /**
+   * Language codes to hide
+   */
+  hides?: string[]
+  /**
+   * Maximum number of languages to show
+   */
+  max?: number
+}
+
+const {
+  entry,
+  class: className,
+  availableCurrent,
+  highlightCurrent,
+  hides = [],
+} = Astro.props
+
+const fKeys = config.post.frontmatterKeys
+
+const entryList = Object.entries(entry.data[fKeys.langs])
+const entryListShow = entryList.filter(([code]) => !hides.includes(code))
+
+const max = Astro.props.max ?? entryListShow.length
+---
+
+<nav class:list={['flex flex-row gap-x-2 items-center', className]}>
+  {
+    entryListShow.slice(0, max).map(([code, value]) => {
+      const {
+        value: value_,
+        collection = entry.collection,
+      } = typeof value === 'string' ? { value } : value
+
+      const langInfo = {
+        code,
+        label: code,
+        ...config.post.lang.langs?.[code],
+      }
+
+      const isCurrent = code === entry.data[fKeys.lang]
+      const href = !availableCurrent && isCurrent
+        ? 'javascript:void(0);'
+        : value_.includes('://')
+          ? value_
+          : getPath(
+              'post',
+              config.post.pathStyle === 'collection/id'
+                ? [collection, value_]
+                : [value_],
+            )
+
+      return (
+        <a
+          {href}
+          class:list={[
+            'hoverable-text decoration-none',
+            highlightCurrent && isCurrent ? 'tag-blue500' : 'tag-zinc500',
+            !availableCurrent && isCurrent && 'pointer-events-none cursor-default',
+          ]}
+        >{langInfo.label}</a>
+      )
+    })
+  }
+
+  {
+    entryListShow.length - max > 0 && (
+      <a
+        href={getPath(
+          'post',
+          config.post.pathStyle === 'collection/id'
+            ? [entry.collection, entry.id]
+            : [entry.id],
+        )}
+        class="tag-zinc500 hoverable-text decoration-none"
+      >+{entryListShow.length - max}</a>
+    )
+  }
+</nav>

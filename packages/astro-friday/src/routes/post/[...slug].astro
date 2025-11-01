@@ -8,7 +8,9 @@ import { getPostList } from '../../utils/content'
 import { getPath } from '../../utils/path'
 
 export async function getStaticPaths() {
-  const entryList = await getPostList()
+  const entryList = await getPostList({
+    langCollapse: false,
+  })
 
   return entryList.map(entry => ({
     params: {
