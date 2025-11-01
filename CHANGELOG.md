@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v1.0.0-beta.23
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.22...v1.0.0-beta.23)
+
+### 🚀 Enhancements
+
+- Auto generate permalink to frontmatter ([c990971](https://github.com/byronogis/astro-friday/commit/c990971))
+- Processors order controlable ([4270e7f](https://github.com/byronogis/astro-friday/commit/4270e7f))
+- Multi-language version of content support ([8914a5d](https://github.com/byronogis/astro-friday/commit/8914a5d))
+
+### 💅 Refactors
+
+- ⚠️  Processors ([16b4865](https://github.com/byronogis/astro-friday/commit/16b4865))
+
+### 🏡 Chore
+
+- Update deps ([e86101d](https://github.com/byronogis/astro-friday/commit/e86101d))
+- Update page style ([0b11a93](https://github.com/byronogis/astro-friday/commit/0b11a93))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Processors ([16b4865](https://github.com/byronogis/astro-friday/commit/16b4865))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.22
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.21...v1.0.0-beta.22)
