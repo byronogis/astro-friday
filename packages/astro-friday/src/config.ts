@@ -89,6 +89,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         keywords: 'keywords',
         draft: 'draft',
         lang: 'lang',
+        permalink: 'permalink',
         toc: 'toc',
       } satisfies ResolvedConfig['post']['frontmatterKeys'],
       export: {
@@ -186,6 +187,8 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
 export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): ResolvedConfig {
   const prefix = userConfig.prefix ?? '/'
   const baseFull = path.join('/', astroConfig.base, prefix)
+  const base = astroConfig.base ?? '/'
+  const site = astroConfig.site ?? `http://localhost:${astroConfig.server.port}`
 
   const defaultConfig = getDefaultConfig(userConfig, astroConfig)
 
@@ -196,6 +199,10 @@ export function resolveConfig(userConfig: Config, astroConfig: AstroConfig): Res
     {
       prefix,
       baseFull,
+      astro: {
+        base,
+        site,
+      },
     },
     userConfig,
     defaultConfig,
@@ -355,6 +362,7 @@ export interface Config {
      *   keywords: 'keywords',
      *   draft: 'draft',
      *   lang: 'lang',
+     *   permalink: 'permalink',
      *   toc: 'toc',
      * }
      * ```
@@ -661,6 +669,24 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'advanced'
   | 'advanced.functionCodeReplace'
 > & {
+  /**
+   * Astro configuration values used in Friday
+   * @see https://docs.astro.build/en/reference/configuration-reference/
+   */
+  astro: {
+    /**
+     * The base path from Astro config.
+     *
+     * If not defined in Astro config, will be set to `'/'`.
+     */
+    base: string
+    /**
+     * The site URL from Astro config.
+     *
+     * If not defined in Astro config, will be set to `http://localhost:<port>`.
+     */
+    site: string
+  }
   /**
    * The full base path, is Astro's base with the config prefix joined.
    */

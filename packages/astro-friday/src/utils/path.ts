@@ -19,7 +19,7 @@ export function getPath<T extends PathType>(
     host,
   } = options
 
-  const _host = host === true ? window.location.origin : host
+  const _host = host === true ? config.astro.site : host
 
   const subpath = ({
     home: '',

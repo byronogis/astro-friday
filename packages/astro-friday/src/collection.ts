@@ -13,6 +13,7 @@ export type FrontmatterKeysInternal = | 'title'
   | 'keywords'
   | 'draft'
   | 'lang'
+  | 'permalink'
   | 'toc'
 
 export function getSchema(resolvedConfig: ResolvedConfig) {
@@ -30,6 +31,7 @@ export function getSchema(resolvedConfig: ResolvedConfig) {
     [fKeys.keywords]: z.union([z.string(), z.array(z.string())]).optional().default([]).transform(val => Array.isArray(val) ? val : [val]),
     [fKeys.draft]: z.boolean().default(false),
     [fKeys.lang]: z.string().optional().default('en'),
+    [fKeys.permalink]: z.string().optional(),
     /**
      * Table of contents (TOC) generation for posts
      */
