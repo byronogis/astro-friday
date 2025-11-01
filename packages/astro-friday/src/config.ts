@@ -8,7 +8,7 @@ import type { Options as rehypeParseOptions } from 'rehype-parse'
 import type { Options as rehypeRemarkOptions } from 'rehype-remark'
 import type { Options as remarkGfmOptions } from 'remark-gfm'
 import type { Options as remarkStringifyOptions } from 'remark-stringify'
-import type { OmitDeep, SetRequiredDeep } from 'type-fest'
+import type { OmitDeep, RequiredDeep } from 'type-fest'
 import type { FrontmatterKeysInternal, Schema } from './collection'
 import type { RobotsTxtOptions } from './integrations/robotsTxt'
 import type * as processors from './processors'
@@ -79,6 +79,9 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       },
       lang: {
         default: 'en',
+        collapse: false,
+        collapseFallbackLangCodes: [],
+        langs: {},
       },
       frontmatterKeys: {
         id: 'id',
@@ -124,6 +127,9 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         entrypoint: `astro-friday/routes/collection/index.astro`,
       },
     },
+    logo: {
+      url: undefined,
+    },
     art: {
       dots: { weight: 1 },
       plum: { weight: 1 },
@@ -154,6 +160,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       },
     },
     integrations: {
+      seo: {},
       nprogress: {
         showSpinner: false,
       },
@@ -181,6 +188,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
             }]
           : [],
       ].flat(),
+      mdx: {},
     },
     projects: [],
     advanced: {
@@ -273,19 +281,19 @@ export interface Config {
      *
      * NOTE currently not used
      */
-    email?: string
+    email?: string | undefined
     /**
      * The author's website URL.
      *
      * NOTE currently not used
      */
-    url?: string
+    url?: string | undefined
     /**
      * The author's avatar image URL.
      *
      * NOTE currently not used
      */
-    avatar?: string
+    avatar?: string | undefined
   }
   /**
    * The copyright information, used in the footer.
@@ -359,6 +367,7 @@ export interface Config {
       default?: string
       /**
        * If set to true, just display a default language version post in post list.
+       * @default false
        */
       collapse?: boolean
       /**
@@ -371,7 +380,7 @@ export interface Config {
        */
       langs?: {
         [LangCode in string]: {
-          code?: LangCode
+          code?: LangCode | undefined
           /**
            * The language label displayed in the language switch area.
            *
@@ -414,15 +423,15 @@ export interface Config {
         /**
          * @see https://github.com/rehypejs/rehype-remark
          */
-        rehypeRemark?: rehypeRemarkOptions
+        rehypeRemark?: rehypeRemarkOptions | undefined
         /**
          * @see https://github.com/remarkjs/remark-gfm
          */
-        remarkGfm?: remarkGfmOptions
+        remarkGfm?: remarkGfmOptions | undefined
         /**
          * @see https://github.com/remarkjs/remark/tree/main/packages/remark-stringify
          */
-        remarkStringify?: remarkStringifyOptions
+        remarkStringify?: remarkStringifyOptions | undefined
       } | false
     }
   }
@@ -485,7 +494,7 @@ export interface Config {
      *
      * @example '/favicon.svg'
      */
-    url?: string
+    url?: string | undefined
   }
   /**
    * Page background art configuration, there are two styles available: `dots` and `plum`.
@@ -592,7 +601,7 @@ export interface Config {
      *
      * @see https://docs.astro.build/en/guides/integrations-guide/mdx/
      */
-    mdx?: MdxOptions | false
+    mdx?: Partial<MdxOptions> | false
   }
   /**
    * Project showcase items, used in the `/project` page.
@@ -644,55 +653,8 @@ export interface Config {
   }
 }
 
-export type ResolvedConfig = SetRequiredDeep<
-  OmitDeep<Config, 'post.frontmatterKeys'>,
-  | 'title'
-  | 'prefix'
-  | 'author'
-  | 'author.name'
-  | 'copyright'
-  | 'copyright.copyrightYears'
-  | 'copyright.license'
-  | 'post'
-  | 'post.pathStyle'
-  | 'post.toc'
-  | 'post.toc.enable'
-  | 'post.toc.range'
-  | 'post.og'
-  | 'post.lang'
-  | 'post.lang.default'
-  | 'post.export'
-  | 'post.export.md'
-  | 'processors'
-  | 'collections'
-  | 'navigations'
-  | `navigations.${string}`
-  | 'pages'
-  | 'pages.404'
-  | 'pages.home'
-  | 'art'
-  | 'art.dots'
-  | 'art.plum'
-  | 'art.dots.weight'
-  | 'art.plum.weight'
-  | 'appearance'
-  | 'imports'
-  | 'imports.@vercel/og'
-  | 'components'
-  | 'components.NavbarBrand'
-  | 'viewTransition'
-  | 'viewTransition.enable'
-  | 'postcss'
-  | 'postcss.postcssGlobalData'
-  | 'postcss.postcssPresetEnv'
-  | 'integrations'
-  | 'integrations.nprogress'
-  | 'integrations.sitemap'
-  | 'integrations.robotsTxt'
-  | 'integrations.mdx'
-  | 'projects'
-  | 'advanced'
-  | 'advanced.functionCodeReplace'
+export type ResolvedConfig = RequiredDeep<
+  OmitDeep<Config, 'post.frontmatterKeys'>
 > & {
   /**
    * Astro configuration values used in Friday
