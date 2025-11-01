@@ -61,7 +61,17 @@ export function getPostList(
       const limit = pLimit(10)
 
       await Promise.all(list.map(entry => limit(async () => {
-        const names = Object.keys(processors) as (keyof typeof processors)[]
+        const names = (Object.keys(processors) as (keyof typeof processors)[])
+          .filter((name) => {
+            const processorOptions = config.processors?.[name]
+            return processorOptions?.enabled ?? true
+          })
+          .sort((a, b) => {
+            const orderA = (config.processors?.[a]?.order ?? Infinity)
+            const orderB = (config.processors?.[b]?.order ?? Infinity)
+            return orderA - orderB
+          })
+
         for (const name of names) {
           const processor = processors[name]
           const processorOptions = config.processors?.[name] || {}

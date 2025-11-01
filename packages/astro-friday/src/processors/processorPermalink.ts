@@ -1,4 +1,4 @@
-import type { Processor } from './index'
+import type { Processor, ProcessorOptionsBasic } from './index'
 import { getPath } from '../utils/path'
 
 /**
@@ -31,7 +31,7 @@ export const processorPermalink: Processor<ProcessorPermalinkOptions> = function
   }
 }
 
-export interface ProcessorPermalinkOptions {
+export interface ProcessorPermalinkOptions extends ProcessorOptionsBasic {
   /**
    * Override existing permalink in frontmatter.
    *

@@ -1,4 +1,4 @@
-import type { Processor } from './index'
+import type { Processor, ProcessorOptionsBasic } from './index'
 
 /**
  * With this processor, you can automatically update the `modified` frontmatter
@@ -6,16 +6,11 @@ import type { Processor } from './index'
  */
 export const processorUpdateModifiedTime: Processor<ProcessorUpdateModifiedTimeOptions> = function (options = {}) {
   const {
-    enabled = true,
     mode = 'git',
     override = false,
   } = options
 
   return async function (entry, config) {
-    if (!enabled) {
-      return
-    }
-
     const fKeys = config.post.frontmatterKeys
 
     const isModifiedExist = Boolean(entry.data[fKeys.modified])
@@ -40,13 +35,7 @@ export const processorUpdateModifiedTime: Processor<ProcessorUpdateModifiedTimeO
   }
 }
 
-export interface ProcessorUpdateModifiedTimeOptions {
-  /**
-   * Enable or disable this processor.
-   *
-   * @default true
-   */
-  enabled?: boolean
+export interface ProcessorUpdateModifiedTimeOptions extends ProcessorOptionsBasic {
   /**
    * Mode to determine the last modified time.
    *
