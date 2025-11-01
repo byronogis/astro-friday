@@ -29,6 +29,7 @@ export default defineConfig({
       'color-base': 'text-black dark:text-white',
       'border-base': 'border-[#8884]',
     },
+    [/^stroke-text-(.+)$/, ([_, size]) => `color-transparent font-bold text-stroke-${size} text-stroke-hex-aaa`],
     [/^tag-(\w+)$/, ([_, color]) => `text-xs text-${color} my-auto px-1 py-0.5 align-middle rounded bg-${color}/15`],
     [/^btn-(\w+)$/, ([_, color]) => `op50 px2.5 py1 transition-all duration-200 ease-out no-underline! hover:(op100 text-${color} bg-${color}/10) border border-base! rounded`],
   ],

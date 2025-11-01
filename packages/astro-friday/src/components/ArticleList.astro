@@ -44,7 +44,7 @@ const groupedByYear = entryList.reduce((acc, entry) => {
             class="h-20 pointer-events-none select-none relative"
           >
             <span
-              class="text-8em color-transparent font-bold text-stroke-2 text-stroke-hex-aaa op-10 left--3rem top--2rem absolute"
+              class="text-8em stroke-text-2 op-10 left--3rem top--2rem absolute"
             >{year}</span>
           </div>
 
@@ -85,14 +85,11 @@ const groupedByYear = entryList.reduce((acc, entry) => {
                         : <span class="text-#000 dark:text-#fff">{entry.data[fKeys.title]}</span>
                     }
 
-                    <div class="flex gap-2 items-center">
-                      <span class="text-sm ws-nowrap">
+                    <div class="text-sm flex gap-2 items-center">
+                      <span class="ws-nowrap">
                         { formatDate(entry.data[fKeys.modified] || entry.data[fKeys.created], true) }
-                      </span>
-
-                      <span
-                        class="tag-zinc500 flex-none"
-                      >{entry.collection}</span>
+                      </span> ・
+                      <span class="">{entry.collection}</span>
                     </div>
                   </a>
                 </li>
