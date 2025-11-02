@@ -18,6 +18,7 @@ lang: zh
 [![codecov](https://img.shields.io/codecov/c/gh/byronogis/astro-friday)](https://codecov.io/gh/byronogis/astro-friday)
 [![license](https://img.shields.io/github/license/byronogis/astro-friday)](https://github.com/byronogis/astro-friday/blob/main/LICENSE)
 [![JSDocs][jsdocs-src]][jsdocs-href]
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/byronogis/astro-friday)
 
 一个以内容为核心的 [Astro](https://astro.build) 集成，支持标签和系列功能。
 
