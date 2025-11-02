@@ -59,7 +59,7 @@ const fKeys = config.post.frontmatterKeys
   }
 </div>
 
-<article class="component-article-detail__article displaying-table-of-contents mx-auto prose dark:prose-invert">
+<article lang={entry.data[fKeys.lang]} class="component-article-detail__article displaying-table-of-contents mx-auto prose dark:prose-invert">
   <slot />
 </article>
 
