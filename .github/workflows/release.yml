@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  release:
+    uses: byronogis/workflows/.github/workflows/release.yml@v1
+    permissions:
+      contents: write
+      id-token: write
