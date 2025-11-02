@@ -39,6 +39,7 @@
   },
   "peerDependencies": {
     "@astrojs/mdx": "catalog:deps",
+    "@astrojs/rss": "catalog:seo",
     "@astrojs/sitemap": "catalog:seo",
     "@byronogis/postcss-global-data": "catalog:deps",
     "@iconify-json/lucide": "catalog:icons",

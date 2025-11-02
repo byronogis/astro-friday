@@ -72,6 +72,11 @@ export default defineConfig({
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
         { label: 'Friday', link: 'https://github.com/byronogis/astro-friday/', desc: 'A content-focused Astro integration with tag and series support.', icon: 'i-lucide:lightbulb', category: 'Integration' },
       ],
+      integrations: {
+        rss: {
+          stylesheet: '/astro-friday/pretty-feed-v3.xsl',
+        },
+      },
     }),
   ],
   server: {

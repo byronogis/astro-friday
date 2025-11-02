@@ -186,6 +186,7 @@ export function integration(userConfig: Config = {}): AstroIntegration {
 
         resolvedConfig.pages[404] && routes.push(resolvedConfig.pages[404])
         resolvedConfig.pages.home && routes.push(resolvedConfig.pages.home)
+        resolvedConfig.pages['rss.xml'] && routes.push(resolvedConfig.pages['rss.xml'])
 
         routes.forEach((route) => {
           injectRoute({

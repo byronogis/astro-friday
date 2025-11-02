@@ -1,5 +1,6 @@
 ---
 import type { Props as SEOProps } from 'astro-seo'
+import path from 'node:path'
 import { SEO } from 'astro-seo'
 import { defu } from 'defu'
 import config from 'virtual:astro-friday-config'
@@ -24,6 +25,7 @@ const mergedSEO = defu<SEOProps, SEOProps[]>(
       ],
       link: [
         { rel: 'icon', href: config?.logo?.url || Logo.src, type: 'image/svg+xml' },
+        config.pages['rss.xml'] && { rel: 'alternate', href: path.join(Astro.url.origin, config.astro.base, config.pages['rss.xml'].pattern), type: 'application/rss+xml', title: config.title },
       ],
     },
   },

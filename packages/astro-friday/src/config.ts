@@ -1,4 +1,5 @@
 import type { MdxOptions } from '@astrojs/mdx'
+import type { RSSOptions } from '@astrojs/rss'
 import type { SitemapOptions } from '@astrojs/sitemap'
 import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
@@ -115,16 +116,21 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       'tag': { label: 'Tag', link: path.join(baseFull, 'tag'), icon: 'i-lucide:tag', order: 200 },
       'series': { label: 'Series', link: path.join(baseFull, 'series'), icon: 'i-lucide:square-library', order: 300 },
       'project': { label: 'Project', link: path.join(baseFull, 'project'), icon: 'i-lucide:lightbulb', order: 400, hidden: !userConfig.projects?.length },
+      'rss': { label: 'RSS', link: path.join(baseFull, 'rss.xml'), order: 999, type: 'icon', icon: 'i-lucide:rss' },
       'theme-toggle': { label: 'Theme', link: 'javascript:;', order: 1000 },
     },
     pages: {
-      404: {
+      '404': {
         pattern: path.join(prefix, `404`),
         entrypoint: 'astro-friday/routes/404.astro',
       },
-      home: {
+      'home': {
         pattern: path.join(prefix, ``),
         entrypoint: `astro-friday/routes/collection/index.astro`,
+      },
+      'rss.xml': {
+        pattern: path.join(prefix, `rss.xml`),
+        entrypoint: `astro-friday/routes/rss.xml.ts`,
       },
     },
     logo: {
@@ -189,6 +195,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           : [],
       ].flat(),
       mdx: {},
+      rss: {},
     },
     projects: [],
     advanced: {
@@ -482,7 +489,7 @@ export interface Config {
    * Default home page is the post list page of all collections, you can also set it to a custom page.
    * @see https://byronogis.github.io/astro-friday/post/custom-homepage
    */
-  pages?: Partial<Record<'home' | '404', InjectedRoute | false>>
+  pages?: Partial<Record<'home' | '404' | 'rss.xml', InjectedRoute | false>>
   /**
    * Logo configuration, used in the browser tab and top left corner of the navbar.
    *
@@ -602,6 +609,7 @@ export interface Config {
      * @see https://docs.astro.build/en/guides/integrations-guide/mdx/
      */
     mdx?: Partial<MdxOptions> | false
+    rss?: Partial<RSSOptions>
   }
   /**
    * Project showcase items, used in the `/project` page.
