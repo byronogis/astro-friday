@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.0.0-beta.24
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.23...v1.0.0-beta.24)
+
+### 🚀 Enhancements
+
+- Add lang attribute to artical tag ([137693c](https://github.com/byronogis/astro-friday/commit/137693c))
+- Rss support ([e3f50ac](https://github.com/byronogis/astro-friday/commit/e3f50ac))
+
+### 🩹 Fixes
+
+- Avoid Type instantiation is excessively deep and possibly infinite ([02cf6e5](https://github.com/byronogis/astro-friday/commit/02cf6e5))
+
+### 🏡 Chore
+
+- Add deepwiki badge ([f6d9884](https://github.com/byronogis/astro-friday/commit/f6d9884))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.23
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.22...v1.0.0-beta.23)
