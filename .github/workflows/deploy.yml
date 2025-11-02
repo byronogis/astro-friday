@@ -6,49 +6,12 @@ on: # 触发条件
       - main # 当 main 分支收到推送时触发
   workflow_dispatch: # 允许手动触发
 
-permissions: # GitHub token 的权限设置
-  contents: read # 读取仓库内容
-  pages: write # 写入 GitHub Pages
-  id-token: write # 写入身份令牌
-
-concurrency: # 并发控制
-  group: pages # 同一时间只允许一个部署任务运行
-  cancel-in-progress: true # 如果有新的部署，取消正在进行的部署
-
 jobs:
   deploy:
-    environment: # 环境配置
-      name: github-pages # 环境名称
-      url: ${{ steps.deployment.outputs.page_url }} # 部署后的 URL
-
-    runs-on: ubuntu-latest # 运行环境
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - run: pnpm i
-      - run: pnpm run build
-
-      # 添加缓存验证步骤
-      - name: Verify build
-        run: |
-          if [ ! -d "docs/dist" ]; then
-            echo "Docs build failed - dist directory not found"
-            exit 1
-          fi
-
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/dist # 指定要部署的目录
-      - uses: actions/deploy-pages@v4
-        id: deployment
+    uses: byronogis/workflows/.github/workflows/deploy.yml@v1
+    with:
+      dist: docs/dist
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
