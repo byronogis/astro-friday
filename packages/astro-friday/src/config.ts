@@ -654,14 +654,19 @@ export interface Config {
 }
 
 export type ResolvedConfig = SetRequiredDeep<
-  OmitDeep<Config, 'post.frontmatterKeys'>,
+  Pick<Config, 'title' | 'description' | 'prefix'>,
   | 'title'
+  | 'description'
   | 'prefix'
+> & SetRequiredDeep<
+  Pick<Config, 'author' | 'copyright'>,
   | 'author'
   | 'author.name'
   | 'copyright'
   | 'copyright.copyrightYears'
   | 'copyright.license'
+> & SetRequiredDeep<
+  Pick<OmitDeep<Config, 'post.frontmatterKeys'>, 'post'>,
   | 'post'
   | 'post.pathStyle'
   | 'post.toc'
@@ -672,34 +677,57 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.lang.default'
   | 'post.export'
   | 'post.export.md'
+> & SetRequiredDeep<
+  Pick<Config, 'processors' | 'collections' | 'navigations'>,
   | 'processors'
   | 'collections'
   | 'navigations'
   | `navigations.${string}`
+> & SetRequiredDeep<
+  Pick<Config, 'pages'>,
   | 'pages'
   | 'pages.404'
   | 'pages.home'
+> & Pick<Config, 'logo'>
+& SetRequiredDeep<
+  Pick<Config, 'art'>,
   | 'art'
   | 'art.dots'
   | 'art.plum'
   | 'art.dots.weight'
   | 'art.plum.weight'
+> & SetRequiredDeep<
+  Pick<Config, 'appearance'>,
   | 'appearance'
+> & SetRequiredDeep<
+  Pick<Config, 'imports'>,
   | 'imports'
   | 'imports.@vercel/og'
+> & SetRequiredDeep<
+  Pick<Config, 'components'>,
   | 'components'
   | 'components.NavbarBrand'
+> & SetRequiredDeep<
+  Pick<Config, 'viewTransition'>,
   | 'viewTransition'
   | 'viewTransition.enable'
+> & SetRequiredDeep<
+  Pick<Config, 'postcss'>,
   | 'postcss'
   | 'postcss.postcssGlobalData'
   | 'postcss.postcssPresetEnv'
+> & SetRequiredDeep<
+  Pick<Config, 'integrations'>,
   | 'integrations'
   | 'integrations.nprogress'
   | 'integrations.sitemap'
   | 'integrations.robotsTxt'
   | 'integrations.mdx'
+> & SetRequiredDeep<
+  Pick<Config, 'projects'>,
   | 'projects'
+> & SetRequiredDeep<
+  Pick<Config, 'advanced'>,
   | 'advanced'
   | 'advanced.functionCodeReplace'
 > & {
