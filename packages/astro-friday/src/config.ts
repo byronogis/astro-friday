@@ -117,15 +117,15 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
       'theme-toggle': { label: 'Theme', link: 'javascript:;', order: 1000 },
     },
     pages: {
-      '404': {
+      404: {
         pattern: path.join(prefix, `404`),
         entrypoint: 'astro-friday/routes/404.astro',
       },
-      'home': {
+      home: {
         pattern: path.join(prefix, ``),
         entrypoint: `astro-friday/routes/collection/index.astro`,
       },
-      'rss.xml': {
+      rss_xml: {
         pattern: path.join(prefix, `rss.xml`),
         entrypoint: `astro-friday/routes/rss.xml.ts`,
       },
@@ -481,7 +481,7 @@ export interface Config {
    * Default home page is the post list page of all collections, you can also set it to a custom page.
    * @see https://byronogis.github.io/astro-friday/post/custom-homepage
    */
-  pages?: Partial<Record<'home' | '404' | 'rss.xml', InjectedRoute | false>>
+  pages?: Partial<Record<'home' | '404' | 'rss_xml', InjectedRoute | false>>
   /**
    * Logo configuration, used in the browser tab and top left corner of the navbar.
    *
@@ -688,6 +688,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'pages'
   | 'pages.404'
   | 'pages.home'
+  | 'pages.rss_xml'
 > & Pick<Config, 'logo'>
 & SetRequiredDeep<
   Pick<Config, 'art'>,

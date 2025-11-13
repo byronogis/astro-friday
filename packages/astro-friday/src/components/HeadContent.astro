@@ -25,7 +25,14 @@ const mergedSEO = defu<SEOProps, SEOProps[]>(
       ],
       link: [
         { rel: 'icon', href: config?.logo?.url || Logo.src, type: 'image/svg+xml' },
-        config.pages['rss.xml'] && { rel: 'alternate', href: path.join(Astro.url.origin, config.astro.base, config.pages['rss.xml'].pattern), type: 'application/rss+xml', title: config.title },
+        config.pages.rss_xml
+        ? {
+          rel: 'alternate',
+          href: path.join(Astro.url.origin, config.astro.base, config.pages.rss_xml.pattern),
+          type: 'application/rss+xml',
+          title: config.title,
+        }
+        : {},
       ],
     },
   },
