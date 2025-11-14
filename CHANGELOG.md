@@ -1,6 +1,37 @@
 # Changelog
 
 
+## v1.0.0-beta.25
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.24...v1.0.0-beta.25)
+
+### 🚀 Enhancements
+
+- **processors:** Frontmatter title optional now, add processorTitle to set frontmatter title from file name if no set ([566f4b4](https://github.com/byronogis/astro-friday/commit/566f4b4))
+- **docs:** Configuration doc generate automatically ([7db8392](https://github.com/byronogis/astro-friday/commit/7db8392))
+
+### 🩹 Fixes
+
+- Avoid Type instantiation is excessively deep and possibly infinite" ([2a203d1](https://github.com/byronogis/astro-friday/commit/2a203d1))
+- Avoid Type instantiation is excessively deep and possibly infinite ([0befba3](https://github.com/byronogis/astro-friday/commit/0befba3))
+
+### 🏡 Chore
+
+- **config:** ⚠️  Rename `pages['rss.xml']` to `pages.rss_xml` to avoid conflict when using SetRequiredDeep ([5319075](https://github.com/byronogis/astro-friday/commit/5319075))
+
+### 🤖 CI
+
+- Reusing workflow ([bab314d](https://github.com/byronogis/astro-friday/commit/bab314d))
+- Add release workflow ([1abb398](https://github.com/byronogis/astro-friday/commit/1abb398))
+
+#### ⚠️ Breaking Changes
+
+- **config:** ⚠️  Rename `pages['rss.xml']` to `pages.rss_xml` to avoid conflict when using SetRequiredDeep ([5319075](https://github.com/byronogis/astro-friday/commit/5319075))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.24
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.23...v1.0.0-beta.24)
