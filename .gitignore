@@ -1,3 +1,6 @@
+# Auto-generated files while building
+docs/src/contents/reference/api/
+
 # build output
 dist/
 

@@ -5,6 +5,12 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   site: 'https://byronogis.github.io/',
   base: '/astro-friday',
+  redirects: {
+    '/post/configuration': {
+      status: 302,
+      destination: '/astro-friday/post/api/Interface.Config.md',
+    },
+  },
   integrations: [
     Friday({
       title: 'Astro Friday',
@@ -38,6 +44,13 @@ export default defineConfig({
           glob: {
             pattern: '**/*.{md,mdx}',
             base: './src/contents/recipes',
+          },
+        },
+        reference: {
+          label: 'Reference',
+          glob: {
+            pattern: '**/*.{md,mdx}',
+            base: './src/contents/reference',
           },
         },
       },

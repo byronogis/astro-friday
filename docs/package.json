@@ -7,6 +7,9 @@
     "dev": "astro dev --force",
     "build": "astro build",
     "preview": "astro preview",
+    "predev": "pnpm run generate-reference",
+    "prebuild": "pnpm run generate-reference",
+    "generate-reference": "jiti ./scripts/generate-reference.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [
@@ -14,6 +17,9 @@
   ],
   "dependencies": {
     "astro": "catalog:build",
-    "astro-friday": "workspace:*"
+    "astro-friday": "workspace:*",
+    "typedoc": "catalog:docs",
+    "typedoc-plugin-frontmatter": "catalog:docs",
+    "typedoc-plugin-markdown": "catalog:docs"
   }
 }

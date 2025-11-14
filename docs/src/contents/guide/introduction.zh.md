@@ -98,7 +98,7 @@ export const collections = collection()
 - [x] 下载为 Markdown（获取处理过的 MDX 和 MD）
 - [x] 多语言版本内容支持
 - [x] OG 图像参数自定义
-- [ ] 自动生成配置文档
+- [x] 自动生成配置文档
 - [ ] 资源管理
 - [ ] 图片预览
 - 等等

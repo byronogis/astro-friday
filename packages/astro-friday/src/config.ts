@@ -3,7 +3,7 @@ import type { RSSOptions } from '@astrojs/rss'
 import type { SitemapOptions } from '@astrojs/sitemap'
 import type { AstroConfig, InjectedRoute } from 'astro'
 import type nprogress from 'astro-nprogress'
-import type { Props as SEO } from 'astro-seo'
+import type { SEOProps } from 'astro-seo'
 import type { glob } from 'astro/loaders'
 import type { Options as rehypeParseOptions } from 'rehype-parse'
 import type { Options as rehypeRemarkOptions } from 'rehype-remark'
@@ -573,7 +573,7 @@ export interface Config {
      * specific page build-in:
      * @see https://github.com/byronogis/astro-friday/blob/30e444d5b11dffb70bc5a2036eb83c80ef6bd200/packages/astro-friday/src/routes/post/%5B...slug%5D.astro#L35-L65
      */
-    seo?: SEO
+    seo?: SEOProps
     /**
      * Nprogress using in astro while the astro view transition is enabled.
      *

@@ -96,7 +96,7 @@ More settings can be found in [here](./configuration).
 - [x] download as markdown (maybe useful for mdx and also md which processed)
 - [x] multi-language version of content support
 - [x] og image parameter customization
-- [ ] configuration doc generate automatically
+- [x] configuration doc generate automatically
 - [ ] assets management
 - [ ] image preview
 - etc.
