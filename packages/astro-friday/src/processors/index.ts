@@ -5,6 +5,7 @@ import type { CollectionEntry } from '../types/content'
 export * from './processorId'
 export * from './processorLangs'
 export * from './processorPermalink'
+export * from './processorTitle'
 export * from './processorUpdateModifiedTime'
 
 export type Processor<Options extends ProcessorOptionsBasic> = (options: Options) =>
