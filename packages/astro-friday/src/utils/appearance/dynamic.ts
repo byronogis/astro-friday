@@ -71,6 +71,7 @@ export const dynamic: Appearance = function dynamic(event, options) {
         {
           duration: 400,
           easing: 'ease-out',
+          fill: 'forwards',
           pseudoElement: isDark
             ? '::view-transition-old(root)'
             : '::view-transition-new(root)',
