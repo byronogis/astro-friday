@@ -62,7 +62,7 @@
     "vite-plugin-inspect": "^11.3.3"
   },
   "dependencies": {
-    "astro-color-scheme": "git+https://github.com/byronogis/astro-color-scheme.git#feat-support-astro-view-transition",
+    "astro-color-scheme": "catalog:deps",
     "astro-nprogress": "^0.0.2",
     "astro-view-transition-script": "^0.0.3",
     "defu": "catalog:deps",
