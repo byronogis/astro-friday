@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.0.0-beta.26
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.25...v1.0.0-beta.26)
+
+### 🚀 Enhancements
+
+- **config:** Post sort control by `post.sort` ([0672317](https://github.com/byronogis/astro-friday/commit/0672317))
+
+### 🏡 Chore
+
+- **docs:** Excute astro sync while prepare ([36d9935](https://github.com/byronogis/astro-friday/commit/36d9935))
+- Type fix ([70ad597](https://github.com/byronogis/astro-friday/commit/70ad597))
+- Update deps ([f30508c](https://github.com/byronogis/astro-friday/commit/f30508c))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.25
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.24...v1.0.0-beta.25)
