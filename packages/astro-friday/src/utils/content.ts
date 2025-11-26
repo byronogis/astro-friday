@@ -1,4 +1,5 @@
 import type { SetRequired } from 'type-fest'
+import type { ResolvedConfig } from '../config'
 import type { CollectionEntry } from '../types/content'
 import { getCollection } from 'astro:content'
 import dayjs from 'dayjs'
@@ -25,7 +26,7 @@ export function getPostList(
     langCollapse = config.post.lang.collapse,
     groupBy,
     filters = {},
-    sort = 'created-desc',
+    sort = config.post.sort,
   } = options
 
   const tags = [filters.tags || []].flat()
@@ -154,7 +155,7 @@ interface GetPostListOptions {
    *
    * @default config.post.lang.collapse
    */
-  langCollapse?: boolean
+  langCollapse?: ResolvedConfig['post']['lang']['collapse']
   groupBy?: 'year' | 'tag' | 'series' | 'collection' | 'id'
   filters?: {
     tags?: string | string[]
@@ -163,12 +164,7 @@ interface GetPostListOptions {
   /**
    * Sort order for the posts.
    *
-   * By default, posts are sorted by created date in descending order (newest first).
-   *
-   * - 'created-desc': Sort by created date in descending order (newest first).
-   * - 'created-asc': Sort by created date in ascending order (oldest first).
-   *
-   * @default 'created-desc'
+   * @default config.post.sort
    */
-  sort?: 'created-desc' | 'created-asc'
+  sort?: ResolvedConfig['post']['sort']
 }

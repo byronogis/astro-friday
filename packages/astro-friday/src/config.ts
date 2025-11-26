@@ -105,6 +105,7 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
           },
         },
       },
+      sort: 'created-desc',
     },
     processors: {},
     collections: {},
@@ -433,6 +434,17 @@ export interface Config {
         remarkStringify?: remarkStringifyOptions
       } | false
     }
+    /**
+     * Sort order for the posts.
+     *
+     * By default, posts are sorted by created date in descending order (newest first).
+     *
+     * - 'created-desc': Sort by created date in descending order (newest first).
+     * - 'created-asc': Sort by created date in ascending order (oldest first).
+     *
+     * @default 'created-desc'
+     */
+    sort?: 'created-desc' | 'created-asc'
   }
   /**
    * Processors to process each content entry
@@ -677,6 +689,7 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.lang.default'
   | 'post.export'
   | 'post.export.md'
+  | 'post.sort'
 > & SetRequiredDeep<
   Pick<Config, 'processors' | 'collections' | 'navigations'>,
   | 'processors'
