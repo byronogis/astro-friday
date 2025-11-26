@@ -47,7 +47,7 @@ const toc = {
     nofollow: entry.data[fKeys.draft],
     openGraph: {
       basic: {
-        title: entry.data[fKeys.title],
+        title: entry.data[fKeys.title]!,
         type: 'article',
         image: getPath(
           'og',
