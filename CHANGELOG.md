@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.0-beta.27
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.26...v1.0.0-beta.27)
+
+### 🩹 Fixes
+
+- **appearance:** Page flicker while switching from light to dark theme ([0332e32](https://github.com/byronogis/astro-friday/commit/0332e32))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.26
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.25...v1.0.0-beta.26)

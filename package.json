@@ -1,7 +1,7 @@
 {
   "name": "astro-blog-template",
   "type": "module",
-  "version": "1.0.0-beta.26",
+  "version": "1.0.0-beta.27",
   "private": true,
   "packageManager": "pnpm@10.23.0",
   "engines": {
