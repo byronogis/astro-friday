@@ -105,13 +105,17 @@ export function getPostList(
     }))
     // Sort the list
     .then(list => list.sort((a, b) => {
-      if (sort === 'created-asc') {
-        return dayjs(a.data[fKeys.created]).isAfter(dayjs(b.data[fKeys.created])) ? 1 : -1
-      }
-      else if (sort === 'created-desc') {
-        return dayjs(a.data[fKeys.created]).isBefore(dayjs(b.data[fKeys.created])) ? 1 : -1
-      }
-      return 0
+      const { key, api } = ({
+        'created-asc': { key: 'created', api: 'isAfter' },
+        'created-desc': { key: 'created', api: 'isBefore' },
+        'modified-asc': { key: 'modified', api: 'isAfter' },
+        'modified-desc': { key: 'modified', api: 'isBefore' },
+      } as Record<ResolvedConfig['post']['sort'], {
+        key: 'created' | 'modified'
+        api: 'isAfter' | 'isBefore'
+      }>)[sort]
+
+      return dayjs(a.data[fKeys[key]])[api](dayjs(b.data[fKeys[key]])) ? 1 : -1
     }))
     // Group the list if needed
     .then((list) => {

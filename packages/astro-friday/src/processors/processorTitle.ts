@@ -10,7 +10,7 @@ export const processorTitle: Processor<ProcessorTitleOptions> = function (_optio
     } = config.post
 
     if (!entry.data[fKeys.title]) {
-      entry.data[fKeys.title] = entry.filePath!.split('/').pop()
+      entry.data[fKeys.title] = entry.filePath!.split('/').pop()!
     }
   }
 }

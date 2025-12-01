@@ -29,7 +29,7 @@ export const processorUpdateModifiedTime: Processor<ProcessorUpdateModifiedTimeO
     const result = {
       git: () => execSync(`git log -1 --pretty="format:%cI" "${filepath}"`).toString(),
       fs: () => statSync(filepath).mtime.toISOString(),
-    }[mode]()
+    }[mode]() || entry.data[fKeys.created]
 
     entry.data[fKeys.modified] = result
   }

@@ -106,6 +106,13 @@ export function getDefaultConfig(userConfig: Config, astroConfig: AstroConfig): 
         },
       },
       sort: 'created-desc',
+      date: {
+        key: 'created',
+        formats: {
+          short: 'MMM D',
+          long: 'MMM D, YYYY',
+        },
+      },
     },
     processors: {},
     collections: {},
@@ -441,10 +448,38 @@ export interface Config {
      *
      * - 'created-desc': Sort by created date in descending order (newest first).
      * - 'created-asc': Sort by created date in ascending order (oldest first).
+     * - 'modified-desc': Sort by modified date in descending order (newest first).
+     * - 'modified-asc': Sort by modified date in ascending order (oldest first).
      *
      * @default 'created-desc'
      */
-    sort?: 'created-desc' | 'created-asc'
+    sort?: 'created-desc' | 'created-asc' | 'modified-desc' | 'modified-asc'
+    /**
+     * Control the date display infos in post list and post page.
+     */
+    date?: {
+      /**
+       * Which frontmatter field to use as the date source.
+       *
+       * @default 'created'
+       */
+      key?: Extract<FrontmatterKeysInternal, 'created' | 'modified'>
+      /**
+       * The date format string, using dayjs format.
+       */
+      formats?: {
+        /**
+         * The short date format, used in post list.
+         * @default 'MMM D'
+         */
+        short?: string
+        /**
+         * The long date format, used in post page.
+         * @default 'MMM D, YYYY'
+         */
+        long?: string
+      }
+    }
   }
   /**
    * Processors to process each content entry
@@ -690,6 +725,11 @@ export type ResolvedConfig = SetRequiredDeep<
   | 'post.export'
   | 'post.export.md'
   | 'post.sort'
+  | 'post.date'
+  | 'post.date.key'
+  | 'post.date.formats'
+  | 'post.date.formats.short'
+  | 'post.date.formats.long'
 > & SetRequiredDeep<
   Pick<Config, 'processors' | 'collections' | 'navigations'>,
   | 'processors'

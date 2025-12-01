@@ -23,7 +23,7 @@ const fKeys = config.post.frontmatterKeys
 
   <p class="op-50">
     <span class="text-sm ws-nowrap">
-      { formatDate(entry.data[fKeys.modified] || entry.data[fKeys.created], false) }
+      { formatDate(entry.data[fKeys[config.post.date.key]], config.post.date.formats.long) }
     </span> ・
     <span class="">{entry.collection}</span>
   </p>

@@ -87,7 +87,7 @@ const groupedByYear = entryList.reduce((acc, entry) => {
 
                     <div class="text-sm flex gap-2 items-center">
                       <span class="ws-nowrap">
-                        { formatDate(entry.data[fKeys.modified] || entry.data[fKeys.created], true) }
+                        { formatDate(entry.data[fKeys[config.post.date.key]], config.post.date.formats.short) }
                       </span> ・
                       <span class="">{entry.collection}</span>
                     </div>
