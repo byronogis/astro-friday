@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.0.0-beta.28
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.27...v1.0.0-beta.28)
+
+### 🚀 Enhancements
+
+- **post,confg:** Sort by modified and date info custom ([55b8b5b](https://github.com/byronogis/astro-friday/commit/55b8b5b))
+
+### 🏡 Chore
+
+- Update deps ([2d5d15e](https://github.com/byronogis/astro-friday/commit/2d5d15e))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.27
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.26...v1.0.0-beta.27)
