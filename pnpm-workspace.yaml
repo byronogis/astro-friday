@@ -4,7 +4,7 @@ packages:
 
 catalogs:
   build:
-    astro: ^5.16.0
+    astro: ^5.16.3
   deps:
     '@astrojs/mdx': ^4.3.12
     '@byronogis/postcss-global-data': ^1.0.1
@@ -22,7 +22,7 @@ catalogs:
     unocss-preset-scrollbar: ^3.2.0
     zx: ^8.8.5
   docs:
-    typedoc: ^0.28.14
+    typedoc: ^0.28.15
     typedoc-plugin-frontmatter: ^1.3.1
     typedoc-plugin-markdown: ^4.9.0
   frontend:
@@ -31,7 +31,7 @@ catalogs:
     simplex-noise: ^4.0.3
   icons:
     '@iconify-json/logos': ^1.2.10
-    '@iconify-json/lucide': ^1.2.75
+    '@iconify-json/lucide': ^1.2.77
     '@iconify-json/uil': ^1.2.3
   lint:
     '@antfu/eslint-config': ^6.2.0
@@ -43,7 +43,7 @@ catalogs:
     prettier-plugin-astro: ^0.14.1
     simple-git-hooks: ^2.13.1
   release:
-    bumpp: ^10.3.1
+    bumpp: ^10.3.2
     changelogen: ^0.6.2
   seo:
     '@astrojs/rss': ^4.0.14
@@ -51,7 +51,7 @@ catalogs:
     '@vercel/og': ^0.8.5
     astro-seo: ^0.8.4
   shiki:
-    '@shikijs/transformers': ^3.15.0
+    '@shikijs/transformers': ^3.17.1
   types:
     '@types/nprogress': ^0.2.3
   unified:
