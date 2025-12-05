@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.0.0-beta.29
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.28...v1.0.0-beta.29)
+
 ## v1.0.0-beta.28
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.27...v1.0.0-beta.28)
