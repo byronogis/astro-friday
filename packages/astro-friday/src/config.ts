@@ -414,8 +414,6 @@ export interface Config {
       /**
        * Markdown export options, you can customize the markdown export behavior here.
        *
-       * Set to `false` to disable markdown export.
-       *
        * We using unified with rehype and remark plugins to convert HTML back to Markdown.
        * You can pass options to the underlying plugins here.
        */
@@ -439,7 +437,7 @@ export interface Config {
          * @see https://github.com/remarkjs/remark/tree/main/packages/remark-stringify
          */
         remarkStringify?: remarkStringifyOptions
-      } | false
+      }
     }
     /**
      * Sort order for the posts.

@@ -28,11 +28,10 @@ const fKeys = config.post.frontmatterKeys
     <span class="">{entry.collection}</span>
   </p>
 
-  {
-    config.post.export.md
-      ? <button class="btn-export-to-md btn-blue">Export MD</button>
-      : null
-  }
+  <div class="text-sm">
+    <a href="javascript:;" class="btn-export-to-md hoverable-text-50 decoration-none" data-type="download"><i class="i-lucide:download" /> Download</a>
+    <a href="javascript:;" class="btn-export-to-md hoverable-text-50 decoration-none" data-type="copy"><i class="i-lucide:copy" /> Copy page</a>
+  </div>
 
   {
     Object.keys(entry.data[fKeys.langs]).length > 0 && (
@@ -65,6 +64,7 @@ const fKeys = config.post.frontmatterKeys
 
 <script is:inline type="module" define:vars={{ entry, config }}>
 import { withViewTransition } from 'https://esm.sh/astro-view-transition-script@latest'
+import copy from 'https://esm.sh/copy-to-clipboard@3?bundle'
 import rehypeParse from 'https://esm.sh/rehype-parse@9?bundle'
 import rehypeRemark from 'https://esm.sh/rehype-remark@10?bundle'
 import remarkGfm from 'https://esm.sh/remark-gfm@4?bundle'
@@ -80,8 +80,35 @@ function task(state) {
     if (!article)
       return
 
-    const btnExport2Md = state.document.querySelector('.btn-export-to-md')
-    btnExport2Md.addEventListener('click', async () => {
+    const btnExport2Mds = state.document.querySelectorAll('.btn-export-to-md')
+    btnExport2Mds.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const blob = await generateMdContent()
+        const type = btn.getAttribute('data-type')
+
+        if (type === 'copy') {
+          const reader = new FileReader()
+          reader.onload = function () {
+            copy(reader.result, {
+              format: 'text/plain',
+            })
+          }
+          reader.readAsText(blob)
+        }
+        else if (type === 'download') {
+          const url = URL.createObjectURL(blob)
+          const a = state.document.createElement('a')
+          a.href = url
+          a.download = `${entry.id}.md`
+          state.document.body.appendChild(a)
+          a.click()
+          state.document.body.removeChild(a)
+          URL.revokeObjectURL(url)
+        }
+      })
+    })
+
+    async function generateMdContent() {
       const html = article.innerHTML
 
       const file = await unified()
@@ -94,15 +121,9 @@ function task(state) {
       const frontmatter = stringify(entry.data)
 
       const blob = new Blob([`---\n${frontmatter}---\n\n${file.toString()}`], { type: 'text/markdown' })
-      const url = URL.createObjectURL(blob)
-      const a = state.document.createElement('a')
-      a.href = url
-      a.download = `${entry.id}.md`
-      state.document.body.appendChild(a)
-      a.click()
-      state.document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    })
+
+      return blob
+    }
   }
 }
 
