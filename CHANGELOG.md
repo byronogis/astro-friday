@@ -3,6 +3,10 @@
 
 ## v1.0.0-beta.29
 
+### Breaking Changes
+
+- **post:** ⚠️  `export.md` is no longer false, and added copy to clipboard functionality ([6ed099d](https://github.com/byronogis/astro-friday/commit/6ed099d))
+
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.28...v1.0.0-beta.29)
 
 ## v1.0.0-beta.28
