@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.0-beta.31
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.30...v1.0.0-beta.31)
+
+### 🤖 CI
+
+- Noneed build before publish ([0c390d1](https://github.com/byronogis/astro-friday/commit/0c390d1))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.30
 
 [compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.29...v1.0.0-beta.30)
