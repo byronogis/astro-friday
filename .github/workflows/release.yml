@@ -12,3 +12,6 @@ jobs:
     permissions:
       contents: write
       id-token: write
+    with:
+      build: pnpm run build
+      publish: pnpm -r publish --access public --no-git-checks

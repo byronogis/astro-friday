@@ -13,7 +13,7 @@
     "preview": "pnpm -F docs preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp -r && pnpm run -r release",
+    "release": "bumpp -r",
     "upgrade": "npx taze -r -I latest",
     "prepare": "simple-git-hooks"
   },
