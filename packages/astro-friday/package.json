@@ -1,7 +1,7 @@
 {
   "name": "astro-friday",
   "type": "module",
-  "version": "1.0.0-beta.29",
+  "version": "1.0.0-beta.30",
   "description": "A content-focused Astro integration with tag and series support.",
   "author": "Byron <byronogis@outlook.com>",
   "license": "MIT",

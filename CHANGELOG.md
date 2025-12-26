@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.0.0-beta.30
+
+[compare changes](https://github.com/byronogis/astro-friday/compare/v1.0.0-beta.29...v1.0.0-beta.30)
+
+### 🏡 Chore
+
+- Update CHANGELOG ([8b5d874](https://github.com/byronogis/astro-friday/commit/8b5d874))
+- Trusted publishing ([0aad5c1](https://github.com/byronogis/astro-friday/commit/0aad5c1))
+
+### ❤️ Contributors
+
+- Byronogis ([@byronogis](https://github.com/byronogis))
+
 ## v1.0.0-beta.29
 
 ### Breaking Changes
